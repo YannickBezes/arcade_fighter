@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc6cf59f53283474d8286e7f48b06fc2, type: 3}
+  m_Name: Stick_tex_Data
+  m_EditorClassIdentifier: 
+  dataName: Stick
+  dragonBonesJSON: {fileID: 4900000, guid: e32107dd70d09cb4d899f6d85485cdca, type: 3}
+  textureAtlas:
+  - textureAtlasJSON: {fileID: 4900000, guid: b7d59685174de02459796c10f0ce4a09, type: 3}
+    texture: {fileID: 2800000, guid: 10b3d9c638488a74b89edec6de724794, type: 3}
+    material: {fileID: 0}
+    uiMaterial: {fileID: 0}

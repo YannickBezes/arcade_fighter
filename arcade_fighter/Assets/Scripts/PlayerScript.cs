@@ -14,10 +14,21 @@ public class PlayerScript : MonoBehaviour
     public float jumpForce;
     public int numberOfThisPlayer;
 
-    public KeyCode left;
+	private float timeBtwnAttack;
+	public float startTimeBtwnAttack; // Start time between attack
+
+	public LayerMask whatIsEnnemies;
+	public float attackRange;
+
+	public KeyCode left;
     public KeyCode right;
     public KeyCode jump;
     public KeyCode crouch;
+    public KeyCode rangedAttack;
+    public KeyCode block;
+	public KeyCode meleAttack;
+
+    private bool isBlocking = false;
 
     public Transform groundCheckPoint;
     public bool isGrounded;
@@ -27,6 +38,8 @@ public class PlayerScript : MonoBehaviour
     private Animator animator;
     private Rigidbody2D rigidBody;
     private bool faceRight = true;
+
+    public GameObject projectile;
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +54,10 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		if(hp <= 0) {
+			Destroy(gameObject);
+		}
+
         isGrounded = false;
         Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheckPoint.position, groundCheckRadius, whatIsGround);
         for (int i = 0; i < colliders.Length; i++)
@@ -51,18 +68,67 @@ public class PlayerScript : MonoBehaviour
         animator.SetBool("Ground", isGrounded);
         animator.SetFloat("vSpeed", rigidBody.velocity.y);
 
-        float move = 0;
-        if (Input.GetKey(left))
+        isBlocking = false;
+        if(Input.GetKey(block))
         {
-            move = -1;
+            isBlocking = true;
         }
-        else if (Input.GetKey(right))
+        animator.SetBool("Block", isBlocking);
+        if (isBlocking == true)
         {
-            move = 1;
+            Move(0, false, false);
         }
-        bool isJumping = Input.GetKeyDown(jump);
-        bool isCrouching = Input.GetKey(crouch);
-        this.Move(move, isCrouching, isJumping);
+        else
+        {
+			if (timeBtwnAttack <= 0) {
+				// Then we can attack
+				if (Input.GetKey(meleAttack)) {
+					animator.SetTrigger("MeleAttack");
+					Collider2D[] ennemiesToDamage = Physics2D.OverlapCircleAll(new Vector2(transform.position.x + 2f, transform.position.y), attackRange, whatIsEnnemies);
+
+					foreach (Collider2D colider in ennemiesToDamage) {
+						colider.GetComponent<PlayerScript>().TakeDamage(attack * 1.5f);
+					}
+				}
+
+				timeBtwnAttack = startTimeBtwnAttack;
+			} else {
+				timeBtwnAttack -= Time.deltaTime;
+			}
+
+			if (Input.GetKeyDown(rangedAttack))
+            {
+                //Ranged attack here
+
+                if (!faceRight)
+                {
+                    GameObject p = Instantiate(projectile, new Vector3(transform.position.x - 1.5f, transform.position.y, transform.position.z), transform.rotation);
+                    Vector3 theScale = p.transform.localScale;
+                    theScale.x *= -1;
+                    p.transform.localScale = theScale;
+                }
+                else
+                {
+                    GameObject p = Instantiate(projectile, new Vector3(transform.position.x + 1.5f, transform.position.y, transform.position.z), transform.rotation);
+                }
+
+                animator.SetTrigger("RangedAttack");
+            }
+
+            float move = 0;
+            if (Input.GetKey(left))
+            {
+                move = -1;
+            }
+            else if (Input.GetKey(right))
+            {
+                move = 1;
+            }
+            bool isJumping = Input.GetKeyDown(jump);
+            bool isCrouching = Input.GetKey(crouch);
+            Move(move, isCrouching, isJumping);
+        }
+        
     }
 
     public void Move (float d, bool isCrouching, bool isJumping)
@@ -101,4 +167,9 @@ public class PlayerScript : MonoBehaviour
         theScale.x *= -1;
         transform.localScale = theScale;
     }
+
+	public void TakeDamage(float damage) {
+		hp -= damage;
+		Debug.Log("damage Taken !");
+	}
 }   

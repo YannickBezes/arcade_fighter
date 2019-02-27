@@ -33,7 +33,7 @@ public class SceneSwitch : MonoBehaviour
   void Update()
   {
     // Up and Down for changing the scene
-    if (Input.GetKeyDown(KeyCode.P))
+    if (Input.GetKeyDown(KeyCode.UpArrow))
     {
       // previous scene
       scenes[current_scene--].SetActive(false);
@@ -44,7 +44,7 @@ public class SceneSwitch : MonoBehaviour
       scenes[(current_scene % 6 + 6) % 6].SetActive(true);
     }
    
-    if (Input.GetKeyDown(KeyCode.N))
+    if (Input.GetKeyDown(KeyCode.DownArrow))
     {
       // next scene
       scenes[current_scene++].SetActive(false);
@@ -55,7 +55,7 @@ public class SceneSwitch : MonoBehaviour
       scenes[current_scene].SetActive(true);
     }
 
-    if (Input.GetKey(KeyCode.J))
+    if (Input.GetKey(KeyCode.LeftArrow))
     {
       // move the camera left
       if (transform.position.x > -7.0f)
@@ -65,7 +65,7 @@ public class SceneSwitch : MonoBehaviour
       }
     }
 
-    if (Input.GetKey(KeyCode.L))
+    if (Input.GetKey(KeyCode.RightArrow))
     {
       // move the camera right
       if (transform.position.x < 7.0f)

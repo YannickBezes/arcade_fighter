@@ -12,8 +12,7 @@ public class DecorScript : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         Transform t = GameObject.Find("CharactersList").transform;
 
         charactersList = new GameObject[t.childCount];
@@ -35,8 +34,7 @@ public class DecorScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         
     }
 }

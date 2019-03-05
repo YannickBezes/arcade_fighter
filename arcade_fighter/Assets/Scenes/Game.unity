@@ -112,6 +112,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &43742535 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1975844819, guid: cb3271ef5eeb992409229d7fd581741d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1674070774}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &199488383
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -253,12 +259,104 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &533810519 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1873834820, guid: 306109a736dcc544bb1f2248a38df64b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1143274121}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &533810520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 533810519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f04da6c2afd728c46a3691bf29e99204, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 100
+  attack: 10
+  range: 5
+  speed: 10
+  crouchSpeedMultiplier: 0.5
+  jumpForce: 10
+  numberOfThisPlayer: 1
+  startTimeBtwnMeleAttack: 0.1
+  whatIsEnnemies:
+    serializedVersion: 2
+    m_Bits: 1024
+  attackRange: 2
+  left: 113
+  right: 100
+  jump: 122
+  crouch: 115
+  rangedAttack: 120
+  block: 99
+  meleAttack: 102
+  groundCheckPoint: {fileID: 2045299740}
+  isGrounded: 0
+  groundCheckRadius: 0.2
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 1
+  faceRight: 1
+  projectile: {fileID: 5607297278488647678, guid: 978146e93380572429d330ae172d1fff,
+    type: 3}
 --- !u!4 &594422822 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400004, guid: 57977547c59abb546bbb1501e3c417db,
     type: 3}
   m_PrefabInstance: {fileID: 1652113530}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &808984926 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1125018132, guid: cb3271ef5eeb992409229d7fd581741d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1674070774}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &808984927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 808984926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f04da6c2afd728c46a3691bf29e99204, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 100
+  attack: 10
+  range: 5
+  speed: 10
+  crouchSpeedMultiplier: 0.5
+  jumpForce: 10
+  numberOfThisPlayer: 2
+  startTimeBtwnMeleAttack: 0.1
+  whatIsEnnemies:
+    serializedVersion: 2
+    m_Bits: 512
+  attackRange: 2
+  left: 276
+  right: 275
+  jump: 273
+  crouch: 274
+  rangedAttack: 257
+  block: 258
+  meleAttack: 259
+  groundCheckPoint: {fileID: 43742535}
+  isGrounded: 0
+  groundCheckRadius: 0.2
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 1
+  faceRight: 0
+  projectile: {fileID: 5607297278488647678, guid: 978146e93380572429d330ae172d1fff,
+    type: 3}
 --- !u!4 &974571018 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400004, guid: 57977547c59abb546bbb1501e3c417db,
@@ -452,7 +550,12 @@ PrefabInstance:
       propertyPath: whatIsEnnemies.m_Bits
       value: 1024
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 1873834821, guid: 306109a736dcc544bb1f2248a38df64b, type: 3}
+      propertyPath: startTimeBtwnAttack
+      value: 0.1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 1873834821, guid: 306109a736dcc544bb1f2248a38df64b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 306109a736dcc544bb1f2248a38df64b, type: 3}
 --- !u!1 &1475193666
 GameObject:
@@ -694,17 +797,17 @@ PrefabInstance:
     - target: {fileID: 3932835732288317843, guid: cb3271ef5eeb992409229d7fd581741d,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3932835732288317843, guid: cb3271ef5eeb992409229d7fd581741d,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3932835732288317843, guid: cb3271ef5eeb992409229d7fd581741d,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3932835732288317843, guid: cb3271ef5eeb992409229d7fd581741d,
         type: 3}
@@ -770,7 +873,17 @@ PrefabInstance:
       propertyPath: whatIsEnnemies.m_Bits
       value: 512
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 1125018133, guid: cb3271ef5eeb992409229d7fd581741d, type: 3}
+      propertyPath: startTimeBtwnAttack
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2230595922993432429, guid: cb3271ef5eeb992409229d7fd581741d,
+        type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 1125018133, guid: cb3271ef5eeb992409229d7fd581741d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: cb3271ef5eeb992409229d7fd581741d, type: 3}
 --- !u!1001 &1987102131
 PrefabInstance:
@@ -898,6 +1011,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &2045299740 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 454129238, guid: 306109a736dcc544bb1f2248a38df64b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1143274121}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3932835732288317843 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3932835732288317843, guid: cb3271ef5eeb992409229d7fd581741d,

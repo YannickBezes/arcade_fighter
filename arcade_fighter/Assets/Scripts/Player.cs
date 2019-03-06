@@ -40,6 +40,12 @@ public class Player : MonoBehaviour {
 
     public GameObject projectile;
 
+	// Combos part
+	public KeyCode[] combo1;
+	private int[] currentComboIndex = new int[6];
+	public float timeBetweenAttacks = 0.5f;
+	private float timeLastButtonPressed;
+
 	#endregion
 
 	// Start is called before the first frame update
@@ -66,6 +72,9 @@ public class Player : MonoBehaviour {
 			RangedAttack();
 			MeleAttack();
 
+			if (CheckCombo(1, combo1)) {
+				Debug.Log("Combo 1");
+			}
 
 			// Move
 			float move = 0;
@@ -164,5 +173,29 @@ public class Player : MonoBehaviour {
 			p.GetComponent<ProjectileScript>().damage = attack * 0.5f; // Set the damage of the projectile
 			animator.SetTrigger("RangedAttack");
 		}
+	}
+
+	// Combos part
+	public bool CheckCombo(int comboNumber, KeyCode[] combo) {
+		if (Time.time > timeLastButtonPressed + timeBetweenAttacks) {
+			currentComboIndex[comboNumber] = 0;
+		}
+
+		if (currentComboIndex[comboNumber] < combo.Length) {
+			if (Input.GetKeyDown(combo[currentComboIndex[comboNumber]])) {
+				timeLastButtonPressed = Time.time;
+				currentComboIndex[comboNumber]++;
+			} else if (Input.anyKeyDown) {
+				currentComboIndex[comboNumber] = 0;
+				return false;
+			}
+
+			if (currentComboIndex[comboNumber] == combo.Length) {
+				currentComboIndex[comboNumber] = 0;
+				return true;
+			}
+		}
+
+		return false;
 	}
 }   

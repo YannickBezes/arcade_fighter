@@ -305,6 +305,8 @@ MonoBehaviour:
   faceRight: 1
   projectile: {fileID: 5607297278488647678, guid: 978146e93380572429d330ae172d1fff,
     type: 3}
+  combo1: 6600000066000000
+  timeBetweenAttacks: 0.5
 --- !u!4 &594422822 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400004, guid: 57977547c59abb546bbb1501e3c417db,
@@ -357,6 +359,8 @@ MonoBehaviour:
   faceRight: 0
   projectile: {fileID: 5607297278488647678, guid: 978146e93380572429d330ae172d1fff,
     type: 3}
+  combo1: 
+  timeBetweenAttacks: 0.5
 --- !u!4 &974571018 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400004, guid: 57977547c59abb546bbb1501e3c417db,

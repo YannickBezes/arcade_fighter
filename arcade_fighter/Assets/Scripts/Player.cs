@@ -3,8 +3,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
-	#region Properties
-	// Character's specifications (can be changed in unity's inspector)
+    #region Properties
+    // Character's specifications (can be changed in unity's inspector)
+    public String playerName;
+    public float maxHp; // Initial health
 	public float hp;
     public float attack;
     public float range;
@@ -45,7 +47,8 @@ public class Player : MonoBehaviour {
 	private int[] currentComboIndex = new int[6];
 	public float timeBetweenAttacks = 0.5f;
 	private float timeLastButtonPressed;
-
+    // For query of PlayerHealth
+    public bool isDamaged = false;
 	#endregion
 
 	// Start is called before the first frame update
@@ -53,6 +56,7 @@ public class Player : MonoBehaviour {
         groundCheckPoint = transform.Find("GroundCheck");
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        hp = maxHp;
     }
 
     // Update is called once per frame
@@ -122,10 +126,13 @@ public class Player : MonoBehaviour {
 
 	public void TakeDamage(float damage) {
 		// If the player doesn't counter the attack he take damage
-		if(!isBlocking) {
+		if (!isBlocking) {
 			hp -= damage;
+            isDamaged = true;
 			Debug.Log("Damage Taken !");
-		}
+		} else {
+            isDamaged = false;
+        }
 
 		if (hp <= 0) {
 			// Must end the game

@@ -25,8 +25,8 @@ public class PlayerHealth : MonoBehaviour {
 		healthSlider.minValue = 0;
 		healthSlider.maxValue = playerInfo.maxHp;
 
-		if(playerInfo.numberOfThisPlayer == 2)
-			PlaceNamePlayer2();
+		//if(playerInfo.numberOfThisPlayer == 2)
+		//	PlaceNamePlayer2();
 	}
 
 	// Update is called once per frame

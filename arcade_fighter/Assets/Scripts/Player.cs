@@ -128,23 +128,10 @@ public class Player : MonoBehaviour {
 		// If the player doesn't counter the attack he take damage
 		if (!isBlocking) {
 			hp -= damage;
-<<<<<<< HEAD
 			isDamaged = true;
 			Debug.Log("Damage Taken !");
 		} else {
 			isDamaged = false;
-=======
-            isDamaged = true;
-			Debug.Log("Damage Taken !");
-		} else {
-            isDamaged = false;
-        }
-
-		if (hp <= 0) {
-			// Must end the game
-			// For now just destroy the player
-			Destroy(gameObject);
->>>>>>> cc22bf0f54c3ca03f4c0de136d3dc5ede748c886
 		}
 	}
 
@@ -214,7 +201,6 @@ public class Player : MonoBehaviour {
 
 		return false;
 	}
-<<<<<<< HEAD
 
 	public void ChangeStats(float hpModifier, float attackModifier, float rangeModifier, float speedModifier)
     {
@@ -223,7 +209,4 @@ public class Player : MonoBehaviour {
         range += rangeModifier;
         speed += speedModifier;
     }
-
-=======
->>>>>>> cc22bf0f54c3ca03f4c0de136d3dc5ede748c886
 }   

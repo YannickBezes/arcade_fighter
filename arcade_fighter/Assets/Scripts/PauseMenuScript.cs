@@ -3,16 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenu : MonoBehaviour
+public class PauseMenuScript : MonoBehaviour
 {
-    public void startGame()
+    public void resume()
+    {
+        GameObject.Find("Decor").GetComponent<DecorScript>().HidePauseMenu();
+    }
+
+    public void restart()
     {
         SceneManager.LoadScene("Game");
     }
 
-    public void quitGame()
+    public void mainMenu()
     {
-        Application.Quit();
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void OnButtonHoverEnter(GameObject btn)

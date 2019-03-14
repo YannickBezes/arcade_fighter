@@ -19,9 +19,16 @@ public class ProjectileScript: MonoBehaviour {
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision) {
-		Player player = collision.GetComponent<Player>();
-		if (player != null)
-			player.TakeDamage(damage);
-		Destroy(gameObject);
+        if(collision.tag == "Player")
+        {
+            Player player = collision.GetComponent<Player>();
+            if (player != null)
+                player.TakeDamage(damage);
+        }
+        if (collision.tag == "DecorItem")
+        {
+            collision.GetComponent<DecorItemScript>().TakeDamage(damage);
+        }
+        Destroy(gameObject);
 	}
 }

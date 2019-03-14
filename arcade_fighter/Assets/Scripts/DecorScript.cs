@@ -104,4 +104,14 @@ public class DecorScript : MonoBehaviour
             cam.transform.position = new Vector3(midpoint.x, cam.transform.position.y, cam.transform.position.z);
         }
     }
+
+    public GameObject GetPlayer1()
+    {
+        return player1;
+    }
+
+    public GameObject GetPlayer2()
+    {
+        return player2;
+    }
 }

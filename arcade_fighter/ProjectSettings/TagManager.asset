@@ -8,6 +8,7 @@ TagManager:
   - TagStartBtn
   - TagQuitBtn
   - TagOptBtn
+  - DecorItem
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - PostProcessing
   - Player1
   - Player2
-  - 
+  - BreakableItem
   - 
   - 
   - 

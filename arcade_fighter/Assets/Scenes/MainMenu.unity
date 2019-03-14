@@ -4934,11 +4934,7 @@ GameObject:
   - component: {fileID: 1996019951}
   - component: {fileID: 1996019950}
   m_Layer: 5
-<<<<<<< HEAD
   m_Name: Canvas
-=======
-  m_Name: MainMenuCanvas
->>>>>>> cc22bf0f54c3ca03f4c0de136d3dc5ede748c886
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

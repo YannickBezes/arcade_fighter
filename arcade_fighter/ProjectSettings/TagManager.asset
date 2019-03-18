@@ -8,6 +8,9 @@ TagManager:
   - TagStartBtn
   - TagQuitBtn
   - TagOptBtn
+  - TagAvatarP2
+  - TagAvatarP1
+  - TagBattle
   layers:
   - Default
   - TransparentFX

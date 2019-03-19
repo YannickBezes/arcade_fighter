@@ -14,11 +14,21 @@ public class MainMenu : MonoBehaviour {
     private GameObject avatar_p2;
     private GameObject battleImg;
 
+    private SharedVars vars;
+
     public void Start() {
        
     }
 
     public void StartGame() {
+        Debug.Log("Start game");
+
+        vars = this.GetComponent<SharedVars>();
+
+        vars.SetSceneBackgroundIdx(current_scene);
+
+        Debug.Log(vars.GetSceneBackgroundIdx());
+
         SceneManager.LoadScene("Game");
     }
 

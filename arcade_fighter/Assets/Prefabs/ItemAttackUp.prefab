@@ -143,10 +143,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpModifier: 0
-  attackModifier: 10
-  rangeModifier: 5
+  attackModifier: 3
+  rangeModifier: 1
   speedModifier: 0
-  duration: 10
+  duration: 3
 --- !u!58 &7724463394003618440
 CircleCollider2D:
   m_ObjectHideFlags: 0

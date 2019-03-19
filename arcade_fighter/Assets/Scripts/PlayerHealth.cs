@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Timers;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,21 +24,20 @@ public class PlayerHealth : MonoBehaviour {
 		currentHealth = playerInfo.hp;
 		healthSlider.GetComponentInChildren<Text>().text = playerInfo.playerName;
 		healthSlider.minValue = 0;
-		healthSlider.maxValue = playerInfo.maxHp;
-
-		//if(playerInfo.numberOfThisPlayer == 2)
-		//	PlaceNamePlayer2();
+		healthSlider.maxValue = playerInfo.maxHp;	
 	}
 
 	// Update is called once per frame
 	void Update() {
-		if (playerInfo.isDamaged) {
-			damageImage.color = flashColor;
-		} else {
-			damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
-		}
-
 		healthSlider.value = playerInfo.hp;
+
+		// TODO : Find something else for tamage taken
+		// Delete it useless (flash red screen)
+		//if (playerInfo.isDamaged) {
+		//	damageImage.color = flashColor;
+		//} else {
+		//	damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
+		//}
 
 		float percentage = playerInfo.hp / playerInfo.maxHp;
 		if (percentage < 0.2f)
@@ -52,25 +52,13 @@ public class PlayerHealth : MonoBehaviour {
 
 	IEnumerator HealthBarFlash() {
 		if (sliderFlashImage.color == sliderFlashColorStart) {
-			yield return new WaitForSeconds(0.5f);
+			yield return new WaitForSeconds(0.05f);
 			sliderFlashImage.color = sliderFlashColorEnd;
 		}
 
 		if (sliderFlashImage.color == sliderFlashColorEnd) {
-			yield return new WaitForSeconds(0.5f);
+			yield return new WaitForSeconds(0.05f);
 			sliderFlashImage.color = sliderFlashColorStart;
 		}
-	}
-
-	/**
-	 * Change the position of the player name 2
-	 */
-	private void PlaceNamePlayer2() {
-		// Get the recTransform of HealthSliderP2.PlayerName
-		RectTransform transform = GameObject.Find("HealthSliderP2").GetComponent<Slider>().transform.Find("PlayerName").GetComponent<RectTransform>();
-		// Get the text of HealthSliderP2.PlayerName
-		Text name = GameObject.Find("HealthSliderP2").GetComponentInChildren<Text>();
-		// Update position
-		transform.anchoredPosition = new Vector3(- (name.preferredWidth), 0, 0);
 	}
 }

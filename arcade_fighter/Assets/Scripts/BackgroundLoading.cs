@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BackgroundLoading : MonoBehaviour
 {
@@ -48,6 +49,13 @@ public class BackgroundLoading : MonoBehaviour
         bg.transform.localScale = sceneScaleFactors[idx];
 
         GameObject.FindGameObjectWithTag("Ground").transform.position = groundPositions[idx];
+        Debug.Log("Characters/c" + vars.GetAvatarIdxP1());
+        Debug.Log("Characters/c" + vars.GetAvatarIdxP2());
+
+        Sprite[] avatars = Resources.LoadAll<Sprite>("Characters");
+
+        GameObject.FindGameObjectWithTag("TagAvatarP1").GetComponent<Image>().sprite = avatars[vars.GetAvatarIdxP1()];
+        GameObject.FindGameObjectWithTag("TagAvatarP2").GetComponent<Image>().sprite = avatars[vars.GetAvatarIdxP2()];
     }
 
     // Update is called once per frame

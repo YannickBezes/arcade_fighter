@@ -26,6 +26,8 @@ public class MainMenu : MonoBehaviour {
         vars = this.GetComponent<SharedVars>();
 
         vars.SetSceneBackgroundIdx(current_scene);
+        vars.SetAvatarIdxP1(current_avatar_p1);
+        vars.SetAvatarIdxP2(current_avatar_p2);
 
         Debug.Log(vars.GetSceneBackgroundIdx());
 
@@ -125,11 +127,13 @@ public class MainMenu : MonoBehaviour {
         avatars = Resources.LoadAll<Sprite>("Characters");
         Debug.Log(avatars.Length);
 
-        current_avatar_p1 = 0;
+        current_avatar_p1 = 11;
         current_avatar_p2 = 4;
 
         avatar_p1 = GameObject.FindGameObjectWithTag("TagAvatarP1");
         avatar_p2 = GameObject.FindGameObjectWithTag("TagAvatarP2");
+        avatar_p1.GetComponent<Image>().sprite = avatars[current_avatar_p1];
+        avatar_p2.GetComponent<Image>().sprite = avatars[current_avatar_p2];
 
         //battleImg = GameObject.FindGameObjectWithTag("TagBattle");
     }

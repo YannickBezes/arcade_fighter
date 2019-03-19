@@ -57,7 +57,8 @@ public class DecorScript : MonoBehaviour {
             canSpawnItem = false;
         }
 
-        if(Input.GetKeyDown(pause)) {
+		// Pause
+		if(Input.GetKeyDown(pause)) {
             showPauseMenu = !showPauseMenu;
         }
 
@@ -68,10 +69,8 @@ public class DecorScript : MonoBehaviour {
             HidePauseMenu();
         }
 
-
 		// END MENU
 		EndMenu();
-        
     }
 
     public void HidePauseMenu() {
@@ -82,6 +81,7 @@ public class DecorScript : MonoBehaviour {
 
     public void MoveCamera() {
         Vector3 midpoint = (player1.transform.position + player2.transform.position) / 2f;
+
         if(midpoint.x < camMinX) {
             cam.transform.position = new Vector3(camMinX, cam.transform.position.y, cam.transform.position.z);
         } else if (midpoint.x > camMaxX) {

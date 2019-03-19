@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityStandardAssets.CrossPlatformInput;
 
 public class Player : MonoBehaviour {
 	// Character's specifications (can be changed in unity's inspector)
@@ -15,9 +13,6 @@ public class Player : MonoBehaviour {
 	public float jumpForce;
 	public int numberOfThisPlayer;
 
-	private float timeBtwnMeleAttack;
-	public float startTimeBtwnMeleAttack; // Start time between attack
-
 	public LayerMask whatIsEnnemies;
 	public float attackRange;
 
@@ -25,9 +20,9 @@ public class Player : MonoBehaviour {
 	public KeyCode right;
 	public KeyCode jump;
 	public KeyCode crouch;
-	public KeyCode rangedAttack;
 	public KeyCode block;
 	public KeyCode meleAttack;
+	public KeyCode rangedAttack;
 
 	private bool isBlocking = false;
 
@@ -42,14 +37,18 @@ public class Player : MonoBehaviour {
 
 	public GameObject projectile;
 
-    // Combos part
-    public KeyCode[] combo1;
+	// Combos part
+	public ListCombos combos;
+
     private int[] currentComboIndex = new int[6];
     public float timeBetweenAttacks = 0.5f;
     private float timeLastButtonPressed;
 
 	// For query of PlayerHealth
 	public bool isDamaged = false;
+
+	// Boosted by item
+	public bool attackBoosted = false;
 
 	// Start is called before the first frame update
 	void Start() {
@@ -76,8 +75,12 @@ public class Player : MonoBehaviour {
 			RangedAttack();
 			MeleAttack();
 
-			if (CheckCombo(1, combo1)) {
-				Debug.Log("Combo 1");
+			foreach (Combo combo in combos.listCombos) {
+				for (int i = 0; i < combo.listKeyCode.Count; i++) {
+					if (CheckCombo(i, combo.listKeyCode)) {
+						Debug.Log("Combo " + combos.listCombos.IndexOf(combo));
+					}
+				}
 			}
 
 			// Move
@@ -125,30 +128,38 @@ public class Player : MonoBehaviour {
 	}
 
 	public void TakeDamage(float damage) {
+		
+		//isDamaged = true;
 		// If the player doesn't counter the attack he take damage
 		if (!isBlocking) {
 			hp -= damage;
-			isDamaged = true;
-			Debug.Log("Damage Taken !");
+			Debug.Log("Damage Taken !" + damage);
 		} else {
-			isDamaged = false;
+			hp -= damage * 0.25f;
+			Debug.Log("Damage Taken !" + damage * 0.25f);
 		}
+		//isDamaged = false;
 	}
 
 	public void MeleAttack() {
-		// If the time between attack is inferior or equal to 0 we can attack 
-		if (timeBtwnMeleAttack <= 0) {
-			if (Input.GetKey(meleAttack)) {
-				animator.SetTrigger("MeleAttack"); // Start the animation "meleAttack"
-				Collider2D[] ennemyColliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x + 2f, transform.position.y), attackRange, whatIsEnnemies);
-				if (ennemyColliders.Length != 0) { // if the array isn't empty there is an ennemy in range
-												   // Get the first collider of the ennemy and hit it
-					ennemyColliders[0].GetComponent<Player>().TakeDamage(attack * 1.5f);
+		if (Input.GetKeyDown(meleAttack)) {
+			animator.SetTrigger("MeleAttack"); // Start the animation "meleAttack"
+			float postion = faceRight ? 1f : -1f;
+			Collider2D[] ennemyColliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x + postion, transform.position.y), attackRange, whatIsEnnemies);
+			if (ennemyColliders.Length != 0) { // if the array isn't empty there is an ennemy in range
+				// Get the first collider of the ennemy and hit it
+				bool damaged = false;
+				for (int i = 0; i < ennemyColliders.Length; i++) {
+
+					if (ennemyColliders[i].tag == "Player") {
+						if (!damaged)
+							ennemyColliders[i].GetComponent<Player>().TakeDamage(attack);
+						damaged = true;
+					}
+					//if (ennemyColliders[i].tag == "DecorItem")
+						//ennemyColliders[i].GetComponent<DecorItemScript>().TakeDamage(attack * 1.5f);
 				}
 			}
-			timeBtwnMeleAttack = startTimeBtwnMeleAttack;
-		} else {
-			timeBtwnMeleAttack -= Time.deltaTime;
 		}
 	}
 
@@ -179,12 +190,13 @@ public class Player : MonoBehaviour {
 	}
 
 	// Combos part
-	public bool CheckCombo(int comboNumber, KeyCode[] combo) {
+	public bool CheckCombo(int comboNumber, List<KeyCode> combo) {
+		// If the time is greater than 0.5 ms, reset combo
 		if (Time.time > timeLastButtonPressed + timeBetweenAttacks) {
 			currentComboIndex[comboNumber] = 0;
 		}
 
-		if (currentComboIndex[comboNumber] < combo.Length) {
+		if (currentComboIndex[comboNumber] < combo.Count) {
 			if (Input.GetKeyDown(combo[currentComboIndex[comboNumber]])) {
 				timeLastButtonPressed = Time.time;
 				currentComboIndex[comboNumber]++;
@@ -193,20 +205,24 @@ public class Player : MonoBehaviour {
 				return false;
 			}
 
-			if (currentComboIndex[comboNumber] == combo.Length) {
+			if (currentComboIndex[comboNumber] == combo.Count) {
 				currentComboIndex[comboNumber] = 0;
 				return true;
 			}
 		}
-
 		return false;
 	}
 
-	public void ChangeStats(float hpModifier, float attackModifier, float rangeModifier, float speedModifier)
-    {
-        hp += hpModifier;
-        attack += attackModifier;
-        range += rangeModifier;
-        speed += speedModifier;
+	public void ChangeStats(float hpModifier, float attackModifier, float rangeModifier, float speedModifier) {
+		// HP can't be superior at 100
+		if(hp < 100)
+			hp = (hp + hpModifier) > 100 ? 100 : hp + hpModifier ;
+
+		if(!attackBoosted) {
+			attack += attackModifier;
+			attackRange += rangeModifier;
+			attackBoosted = true;
+		}
+			speed += speedModifier;
     }
 }   

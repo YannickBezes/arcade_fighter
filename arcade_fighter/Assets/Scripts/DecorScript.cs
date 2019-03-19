@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
-public class DecorScript : MonoBehaviour
-{
+public class DecorScript : MonoBehaviour {
     public float gravity;
 
     public Camera cam;
@@ -41,6 +39,7 @@ public class DecorScript : MonoBehaviour
         player1 = charactersList[player1Selection];
         player2 = charactersList[player2Selection];
 
+		// Set Gravity to the players and set them active
         foreach (GameObject p in new GameObject[] {player1, player2}) {
             p.SetActive(true);
             p.GetComponent<Rigidbody2D>().gravityScale = gravity;
@@ -70,21 +69,8 @@ public class DecorScript : MonoBehaviour
         }
 
 
-		if(player1.GetComponent<Player>() != null && player2.GetComponent<Player>() != null) {
-			if (player1.GetComponent<Player>().hp <= 0 || player2.GetComponent<Player>().hp <= 0) {
-				Time.timeScale = 0;
-				endMenu.SetActive(true);
-				if (player1.GetComponent<Player>().hp <= 0) {
-					if (GameObject.Find("Player1Wins") != null) {
-						GameObject.Find("Player1Wins").SetActive(false);
-					}
-				} else {
-					if (GameObject.Find("Player2Wins") != null) {
-						GameObject.Find("Player2Wins").SetActive(false);
-					}
-				}
-			}
-		}
+		// END MENU
+		EndMenu();
         
     }
 
@@ -104,4 +90,21 @@ public class DecorScript : MonoBehaviour
             cam.transform.position = new Vector3(midpoint.x, cam.transform.position.y, cam.transform.position.z);
         }
     }
+
+	private void EndMenu() {
+		if (player1.GetComponent<Player>() != null && player2.GetComponent<Player>() != null) {
+			if (player1.GetComponent<Player>().hp <= 0 || player2.GetComponent<Player>().hp <= 0) {
+				Time.timeScale = 0;
+				endMenu.SetActive(true); // Display end menu
+				Text playerWinText = GameObject.Find("PlayerWins").GetComponent<Text>();
+				if (player1.GetComponent<Player>().hp <= 0) {
+					// Player 2 win
+					playerWinText.text = player2.GetComponent<Player>().playerName + " win !";
+				} else {
+					// Player 1 win
+					playerWinText.text = player1.GetComponent<Player>().playerName + " win !";
+				}
+			}
+		}
+	}
 }

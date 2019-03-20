@@ -11,6 +11,7 @@ TagManager:
   - TagAvatarP2
   - TagAvatarP1
   - TagBattle
+  - Ground
   layers:
   - Default
   - TransparentFX

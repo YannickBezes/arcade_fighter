@@ -18,12 +18,12 @@ public class BackgroundLoading : MonoBehaviour
 
     private Vector3[] sceneScaleFactors =
     {
-        new Vector3(6.2f, 6.2f, 1.0f),
-        new Vector3(6.2f, 6.2f, 1.0f),
-        new Vector3(5.8f, 5.8f, 1.0f),
-        new Vector3(6.2f, 6.2f, 1.0f),
-        new Vector3(6.2f, 6.2f, 1.0f),
-        new Vector3(5.5f, 5.5f, 1.0f)
+        new Vector3(6.2f, 6.3f, 1.0f),
+        new Vector3(6.2f, 6.3f, 1.0f),
+        new Vector3(5.8f, 5.9f, 1.0f),
+        new Vector3(6.2f, 6.3f, 1.0f),
+        new Vector3(6.2f, 6.3f, 1.0f),
+        new Vector3(5.5f, 5.6f, 1.0f)
     };
 
     private Vector3[] groundPositions =

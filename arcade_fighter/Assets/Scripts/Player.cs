@@ -14,7 +14,8 @@ public class Player : MonoBehaviour {
 	public int numberOfThisPlayer;
 
 	public LayerMask whatIsEnnemies;
-	public float attackRange;
+    public LayerMask whatIsBreakable;
+    public float attackRange;
 
 	public KeyCode left;
 	public KeyCode right;
@@ -144,23 +145,18 @@ public class Player : MonoBehaviour {
 	public void MeleAttack() {
 		if (Input.GetKeyDown(meleAttack)) {
 			animator.SetTrigger("MeleAttack"); // Start the animation "meleAttack"
-			float postion = faceRight ? 1f : -1f;
-			Collider2D[] ennemyColliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x + postion, transform.position.y), attackRange, whatIsEnnemies);
-			if (ennemyColliders.Length != 0) { // if the array isn't empty there is an ennemy in range
-				// Get the first collider of the ennemy and hit it
-				bool damaged = false;
-				for (int i = 0; i < ennemyColliders.Length; i++) {
-
-					if (ennemyColliders[i].tag == "Player") {
-						if (!damaged)
-							ennemyColliders[i].GetComponent<Player>().TakeDamage(attack);
-						damaged = true;
-					}
-					//if (ennemyColliders[i].tag == "DecorItem")
-						//ennemyColliders[i].GetComponent<DecorItemScript>().TakeDamage(attack * 1.5f);
-				}
-			}
-		}
+            float postion = faceRight ? 2f : -2f;
+            Collider2D[] ennemyColliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x + postion, transform.position.y), attackRange, whatIsEnnemies);
+            if (ennemyColliders.Length != 0) { // if the array isn't empty there is an ennemy in range
+                                               // Get the first collider of the ennemy and hit it
+                ennemyColliders[0].GetComponent<Player>().TakeDamage(attack);
+            }
+            Collider2D[] breakableColliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x + postion, transform.position.y), attackRange, whatIsBreakable);
+            if (breakableColliders.Length != 0)
+            {
+                breakableColliders[0].GetComponent<DecorItemScript>().TakeDamage(attack * 1.5f);
+            }
+        }
 	}
 
 	public void Block() {

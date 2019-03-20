@@ -107,4 +107,14 @@ public class DecorScript : MonoBehaviour {
 			}
 		}
 	}
+    
+    public GameObject GetPlayer1()
+    {
+        return player1;
+    }
+
+    public GameObject GetPlayer2()
+    {
+        return player2;
+    }
 }

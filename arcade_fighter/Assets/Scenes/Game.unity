@@ -1247,7 +1247,7 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -1266,7 +1266,7 @@ Canvas:
   m_GameObject: {fileID: 420460643}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 1028878138}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -1276,7 +1276,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_TargetDisplay: 0
 --- !u!1 &462952898
 GameObject:
@@ -2210,23 +2210,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1873834821, guid: 306109a736dcc544bb1f2248a38df64b, type: 3}
       propertyPath: combos.listCombos.Array.data[0].listKeyCode.Array.data[0]
-      value: 116
+      value: 118
       objectReference: {fileID: 0}
     - target: {fileID: 1873834821, guid: 306109a736dcc544bb1f2248a38df64b, type: 3}
       propertyPath: combos.listCombos.Array.data[0].listKeyCode.Array.data[1]
-      value: 116
+      value: 118
       objectReference: {fileID: 0}
     - target: {fileID: 1873834821, guid: 306109a736dcc544bb1f2248a38df64b, type: 3}
       propertyPath: combos.listCombos.Array.data[0].listKeyCode.Array.data[2]
-      value: 116
+      value: 98
       objectReference: {fileID: 0}
     - target: {fileID: 1873834821, guid: 306109a736dcc544bb1f2248a38df64b, type: 3}
       propertyPath: combos.listCombos.Array.data[1].listKeyCode.Array.data[0]
-      value: 114
+      value: 118
       objectReference: {fileID: 0}
     - target: {fileID: 1873834821, guid: 306109a736dcc544bb1f2248a38df64b, type: 3}
       propertyPath: combos.listCombos.Array.data[1].listKeyCode.Array.data[1]
-      value: 114
+      value: 118
       objectReference: {fileID: 0}
     - target: {fileID: 1873834821, guid: 306109a736dcc544bb1f2248a38df64b, type: 3}
       propertyPath: combos.listCombos.Array.data[1].listKeyCode.Array.data[2]
@@ -2243,8 +2243,18 @@ PrefabInstance:
     - target: {fileID: 1873834821, guid: 306109a736dcc544bb1f2248a38df64b, type: 3}
       propertyPath: positionAttack
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1873834821, guid: 306109a736dcc544bb1f2248a38df64b, type: 3}
       propertyPath: whatIsBreakable.m_Bits
       value: 2048
+      objectReference: {fileID: 0}
+    - target: {fileID: 1873834821, guid: 306109a736dcc544bb1f2248a38df64b, type: 3}
+      propertyPath: combos.listCombos.Array.data[0].damage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1873834821, guid: 306109a736dcc544bb1f2248a38df64b, type: 3}
+      propertyPath: combos.listCombos.Array.data[1].damage
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3218297955818934407, guid: 306109a736dcc544bb1f2248a38df64b,
         type: 3}
@@ -3287,6 +3297,8 @@ PrefabInstance:
     - target: {fileID: 1125018133, guid: cb3271ef5eeb992409229d7fd581741d, type: 3}
       propertyPath: attack
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1125018133, guid: cb3271ef5eeb992409229d7fd581741d, type: 3}
       propertyPath: whatIsBreakable.m_Bits
       value: 2048
       objectReference: {fileID: 0}
@@ -4616,8 +4628,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravity: 6
   cam: {fileID: 1028878138}
-  camMinX: -10.9
-  camMaxX: 10.9
+  camMinX: -10.8
+  camMaxX: 10.8
   camMinY: 0
   camMaxY: 0
   player1Selection: 0
@@ -4949,7 +4961,7 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -4968,7 +4980,7 @@ Canvas:
   m_GameObject: {fileID: 1892570735}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 1028878138}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -4978,7 +4990,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_TargetDisplay: 0
 --- !u!1 &1927816753
 GameObject:

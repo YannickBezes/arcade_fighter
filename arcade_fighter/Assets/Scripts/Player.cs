@@ -73,15 +73,10 @@ public class Player : MonoBehaviour {
 		Block();
 		// Attack method
 		if (!isBlocking) { // If the player isn't blocking he can move and attack
-			RangedAttack();
-			MeleAttack();
-
-			foreach (Combo combo in combos.listCombos) {
-				for (int i = 0; i < combo.listKeyCode.Count; i++) {
-					if (CheckCombo(i, combo.listKeyCode)) {
-						Debug.Log("Combo " + combos.listCombos.IndexOf(combo));
-					}
-				}
+			// if this not a combo launch an normal attack
+			if (!IsCombo()) {
+				RangedAttack();
+				MeleAttack();
 			}
 
 			// Move
@@ -186,7 +181,7 @@ public class Player : MonoBehaviour {
 	}
 
 	// Combos part
-	public bool CheckCombo(int comboNumber, List<KeyCode> combo) {
+	private bool CheckCombo(int comboNumber, List<KeyCode> combo) {
 		// If the time is greater than 0.5 ms, reset combo
 		if (Time.time > timeLastButtonPressed + timeBetweenAttacks) {
 			currentComboIndex[comboNumber] = 0;
@@ -207,6 +202,26 @@ public class Player : MonoBehaviour {
 			}
 		}
 		return false;
+	}
+
+	public bool IsCombo() {
+		for (int i = 0; i < combos.listCombos.Count; i++) {
+			Combo combo = combos.listCombos[i];
+			if (CheckCombo(i, combo.listKeyCode)) {
+				// Detect if the last input of the combo is an range attack or mele attack
+				float old_attack = attack; // Save attack
+				attack = combo.damage;
+				if (combo.listKeyCode[combo.listKeyCode.Count - 1] == rangedAttack) {
+					RangedAttack();
+				} else {
+					MeleAttack();
+				}
+				attack = old_attack;
+				Debug.Log("Combo " + i);
+				return true; // This is a combo
+			}
+		}
+		return false; // This is not a combo
 	}
 
 	public void ChangeStats(float hpModifier, float attackModifier, float rangeModifier, float speedModifier) {

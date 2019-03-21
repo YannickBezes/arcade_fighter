@@ -7,6 +7,20 @@ public class PauseMenuScript : MonoBehaviour {
     }
 
     public void restart() {
+        DataScript.ScorePlayer1 = 0;
+        DataScript.ScorePlayer2 = 0;
+        DataScript.BuffPlayer1 = 1;
+        DataScript.BuffPlayer2 = 1;
+        SceneManager.LoadScene("Game");
+    }
+
+    public void nextMatch() {
+        DataScript.BuffPlayer1 = 1;
+        DataScript.BuffPlayer2 = 1;
+        SceneManager.LoadScene("Game");
+    }
+
+    public void nextMatchBuff() {
         SceneManager.LoadScene("Game");
     }
 

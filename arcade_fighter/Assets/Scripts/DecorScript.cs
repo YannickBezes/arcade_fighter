@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class DecorScript : MonoBehaviour {
@@ -20,6 +22,9 @@ public class DecorScript : MonoBehaviour {
     private GameObject pauseMenu;
     public KeyCode pause;
     private GameObject endMenu;
+	private bool endMenuIsActive = false;
+
+	public GameObject scoreP1, scoreP2;
 
     // Start is called before the first frame update
     void Start() {
@@ -27,7 +32,11 @@ public class DecorScript : MonoBehaviour {
         endMenu = GameObject.Find("EndMenu");
         endMenu.SetActive(false);
 
-        Transform t = GameObject.Find("CharactersList").transform;
+		DataScript.NumberOfGamesToWin = 3;
+		scoreP1.GetComponent<Text>().text = DataScript.ScorePlayer1.ToString();
+		scoreP2.GetComponent<Text>().text = DataScript.ScorePlayer2.ToString();
+
+		Transform t = GameObject.Find("CharactersList").transform;
 
         charactersList = new GameObject[t.childCount];
         for (int i = 0; i < t.childCount; i++)
@@ -39,12 +48,11 @@ public class DecorScript : MonoBehaviour {
         player1 = charactersList[player1Selection];
         player2 = charactersList[player2Selection];
 
-		// Set Gravity to the players and set them active
+        // Set Gravity to the players and set them active
         foreach (GameObject p in new GameObject[] {player1, player2}) {
             p.SetActive(true);
             p.GetComponent<Rigidbody2D>().gravityScale = gravity;
         }
-
     }
 
     // Update is called once per frame
@@ -68,10 +76,8 @@ public class DecorScript : MonoBehaviour {
             HidePauseMenu();
         }
 
-
-		// END MENU
-		EndMenu();
-        
+        // END MENU
+		EndMenu();        
     }
 
     public void HidePauseMenu() {
@@ -91,20 +97,45 @@ public class DecorScript : MonoBehaviour {
         }
     }
 
-	private void EndMenu() {
-		if (player1.GetComponent<Player>() != null && player2.GetComponent<Player>() != null) {
+    private void EndMenu() {
+        if (player1.GetComponent<Player>() != null && player2.GetComponent<Player>() != null && !endMenuIsActive) {
 			if (player1.GetComponent<Player>().hp <= 0 || player2.GetComponent<Player>().hp <= 0) {
 				Time.timeScale = 0;
-				endMenu.SetActive(true); // Display end menu
-				Text playerWinText = GameObject.Find("PlayerWins").GetComponent<Text>();
+                endMenu.SetActive(true); // Display end menu
+				endMenuIsActive = true;
+                Text playerWinText = GameObject.Find("PlayerWins").GetComponent<Text>();
 				if (player1.GetComponent<Player>().hp <= 0) {
-					// Player 2 win
-					playerWinText.text = player2.GetComponent<Player>().playerName + " win !";
+                    // Player 2 win
+                    DataScript.ScorePlayer2++;
+                    DataScript.BuffPlayer1 = 1.25f; // Multiply life of player 1 by 25%
+                    if (DataScript.ScorePlayer2 >= DataScript.NumberOfGamesToWin) {
+						playerWinText.text = player2.GetComponent<Player>().playerName + " win the match !";
+						GameObject.Find("ButtonNextMatch").SetActive(false);
+						GameObject.Find("ButtonNextMatchBuff").SetActive(false);
+					} else {
+						playerWinText.text = player2.GetComponent<Player>().playerName + " win the round !";
+					}
 				} else {
-					// Player 1 win
-					playerWinText.text = player1.GetComponent<Player>().playerName + " win !";
+                    // Player 1 win
+                    DataScript.ScorePlayer1++;
+                    DataScript.BuffPlayer2 = 1.25f; //Multiply life of player 2 by 25%
+                    if (DataScript.ScorePlayer1 >= DataScript.NumberOfGamesToWin) {
+						playerWinText.text = player1.GetComponent<Player>().playerName + " win the match !";
+						GameObject.Find("ButtonNextMatch").SetActive(false);
+						GameObject.Find("ButtonNextMatchBuff").SetActive(false);
+					} else {
+						playerWinText.text = player1.GetComponent<Player>().playerName + " win the round !";
+					}
 				}
 			}
 		}
-	}
+    }
+    
+    public GameObject GetPlayer1() {
+        return player1;
+    }
+
+    public GameObject GetPlayer2() {
+        return player2;
+    }
 }

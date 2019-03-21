@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Timers;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,7 +23,7 @@ public class PlayerHealth : MonoBehaviour {
 		currentHealth = playerInfo.hp;
 		healthSlider.GetComponentInChildren<Text>().text = playerInfo.playerName;
 		healthSlider.minValue = 0;
-		healthSlider.maxValue = playerInfo.maxHp;	
+		healthSlider.maxValue = playerInfo.maxHp;
 	}
 
 	// Update is called once per frame

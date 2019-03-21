@@ -1,8 +1,8 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour {
     private GameObject[] scenes;
@@ -14,11 +14,27 @@ public class MainMenu : MonoBehaviour {
     private GameObject avatar_p2;
     private GameObject battleImg;
 
-    public void Start() {
-       
-    }
+    private SharedVars vars;
+
+    public void Start() { }
 
     public void StartGame() {
+        Debug.Log("Start game");
+
+        vars = this.GetComponent<SharedVars>();
+
+        vars.SetSceneBackgroundIdx(current_scene);
+        vars.SetAvatarIdxP1(current_avatar_p1);
+        vars.SetAvatarIdxP2(current_avatar_p2);
+
+        Debug.Log(vars.GetSceneBackgroundIdx());
+
+        DataScript.ScorePlayer1 = 0;
+        DataScript.ScorePlayer2 = 0;
+        DataScript.NumberOfGamesToWin = 3;
+        DataScript.BuffPlayer1 = 1;
+        DataScript.BuffPlayer2 = 1;
+        
         SceneManager.LoadScene("Game");
     }
 
@@ -115,11 +131,13 @@ public class MainMenu : MonoBehaviour {
         avatars = Resources.LoadAll<Sprite>("Characters");
         Debug.Log(avatars.Length);
 
-        current_avatar_p1 = 0;
+        current_avatar_p1 = 11;
         current_avatar_p2 = 4;
 
         avatar_p1 = GameObject.FindGameObjectWithTag("TagAvatarP1");
         avatar_p2 = GameObject.FindGameObjectWithTag("TagAvatarP2");
+        avatar_p1.GetComponent<Image>().sprite = avatars[current_avatar_p1];
+        avatar_p2.GetComponent<Image>().sprite = avatars[current_avatar_p2];
 
         //battleImg = GameObject.FindGameObjectWithTag("TagBattle");
     }

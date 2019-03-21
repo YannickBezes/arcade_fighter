@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class Combo {
 	public List<KeyCode> listKeyCode;
+	public float damage;
 }
 
 [System.Serializable]

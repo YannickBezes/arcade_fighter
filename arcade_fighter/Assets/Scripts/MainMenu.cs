@@ -1,8 +1,8 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour {
     private GameObject[] scenes;
@@ -16,9 +16,7 @@ public class MainMenu : MonoBehaviour {
 
     private SharedVars vars;
 
-    public void Start() {
-       
-    }
+    public void Start() { }
 
     public void StartGame() {
         Debug.Log("Start game");
@@ -31,6 +29,12 @@ public class MainMenu : MonoBehaviour {
 
         Debug.Log(vars.GetSceneBackgroundIdx());
 
+        DataScript.ScorePlayer1 = 0;
+        DataScript.ScorePlayer2 = 0;
+        DataScript.NumberOfGamesToWin = 3;
+        DataScript.BuffPlayer1 = 1;
+        DataScript.BuffPlayer2 = 1;
+        
         SceneManager.LoadScene("Game");
     }
 

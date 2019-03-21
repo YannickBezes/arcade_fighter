@@ -106,23 +106,25 @@ public class DecorScript : MonoBehaviour {
                 Text playerWinText = GameObject.Find("PlayerWins").GetComponent<Text>();
 				if (player1.GetComponent<Player>().hp <= 0) {
                     // Player 2 win
-                    playerWinText.text = player2.GetComponent<Player>().playerName + " win !";
                     DataScript.ScorePlayer2++;
                     DataScript.BuffPlayer1 = 1.25f; // Multiply life of player 1 by 25%
                     if (DataScript.ScorePlayer2 >= DataScript.NumberOfGamesToWin) {
-						// ERROR HERE NEED TO SEE 
-                        //GameObject.Find("ButtonNextMatch").SetActive(false);
-                        //GameObject.Find("ButtonNextMatchBuff").SetActive(false);
-                    }
+						playerWinText.text = player2.GetComponent<Player>().playerName + " win the match !";
+						GameObject.Find("ButtonNextMatch").SetActive(false);
+						GameObject.Find("ButtonNextMatchBuff").SetActive(false);
+					} else {
+						playerWinText.text = player2.GetComponent<Player>().playerName + " win the round !";
+					}
 				} else {
                     // Player 1 win
-					playerWinText.text = player1.GetComponent<Player>().playerName + " win !";
                     DataScript.ScorePlayer1++;
                     DataScript.BuffPlayer2 = 1.25f; //Multiply life of player 2 by 25%
                     if (DataScript.ScorePlayer1 >= DataScript.NumberOfGamesToWin) {
-						// ERROR HERE NEED TO SEE 
-						//GameObject.Find("ButtonNextMatch").SetActive(false);
-						//GameObject.Find("ButtonNextMatchBuff").SetActive(false);
+						playerWinText.text = player1.GetComponent<Player>().playerName + " win the match !";
+						GameObject.Find("ButtonNextMatch").SetActive(false);
+						GameObject.Find("ButtonNextMatchBuff").SetActive(false);
+					} else {
+						playerWinText.text = player1.GetComponent<Player>().playerName + " win the round !";
 					}
 				}
 			}

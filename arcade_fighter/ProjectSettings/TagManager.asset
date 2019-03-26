@@ -13,6 +13,8 @@ TagManager:
   - TagBattle
   - Ground
   - DecorItem
+  - HudTag
+  - DecorTag
   layers:
   - Default
   - TransparentFX

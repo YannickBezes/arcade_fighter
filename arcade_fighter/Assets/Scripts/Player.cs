@@ -43,6 +43,8 @@ public class Player : MonoBehaviour {
     // Combos part
 	public ListCombos combos;
 
+    private BattleCountdown countdown;
+
     private int[] currentComboIndex = new int[6];
     public float timeBetweenAttacks = 0.5f;
     private float timeLastButtonPressed;
@@ -55,6 +57,7 @@ public class Player : MonoBehaviour {
 
 	// Start is called before the first frame update
 	void Start() {
+        countdown = GameObject.FindGameObjectWithTag("DecorTag").GetComponent<BattleCountdown>();
 		groundCheckPoint = transform.Find("GroundCheck");
 		rigidBody = GetComponent<Rigidbody2D>();
 		animator = GetComponent<Animator>();
@@ -67,35 +70,44 @@ public class Player : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-		isGrounded = false;
-		Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheckPoint.position, groundCheckRadius, whatIsGround);
-		for (int i = 0; i < colliders.Length; i++) {
-			if (colliders[i].gameObject != gameObject)
-				isGrounded = true;
-		}
-		animator.SetBool("Ground", isGrounded);
-		animator.SetFloat("vSpeed", rigidBody.velocity.y);
+        if (countdown.isGameReady)
+        {
+            isGrounded = false;
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheckPoint.position, groundCheckRadius, whatIsGround);
+            for (int i = 0; i < colliders.Length; i++)
+            {
+                if (colliders[i].gameObject != gameObject)
+                    isGrounded = true;
+            }
+            animator.SetBool("Ground", isGrounded);
+            animator.SetFloat("vSpeed", rigidBody.velocity.y);
 
-		Block();
-		// Attack method
-		if (!isBlocking) { // If the player isn't blocking he can move and attack
-			// if this not a combo launch an normal attack
-			if (!IsCombo()) {
-				RangedAttack();
-				MeleAttack();
-			}
+            Block();
+            // Attack method
+            if (!isBlocking)
+            { // If the player isn't blocking he can move and attack
+              // if this not a combo launch an normal attack
+                if (!IsCombo())
+                {
+                    RangedAttack();
+                    MeleAttack();
+                }
 
-			// Move
-			float move = 0;
-			if (Input.GetKey(left)) {
-				move = -1;
-			} else if (Input.GetKey(right)) {
-				move = 1;
-			}
-			bool isJumping = Input.GetKeyDown(jump);
-			bool isCrouching = Input.GetKey(crouch);
-			Move(move, isCrouching, isJumping);
-		}
+                // Move
+                float move = 0;
+                if (Input.GetKey(left))
+                {
+                    move = -1;
+                }
+                else if (Input.GetKey(right))
+                {
+                    move = 1;
+                }
+                bool isJumping = Input.GetKeyDown(jump);
+                bool isCrouching = Input.GetKey(crouch);
+                Move(move, isCrouching, isJumping);
+            }
+        }
 	}
 
 	public void Move(float d, bool isCrouching, bool isJumping) {

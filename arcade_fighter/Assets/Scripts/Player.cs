@@ -57,11 +57,15 @@ public class Player : MonoBehaviour {
 		groundCheckPoint = transform.Find("GroundCheck");
 		rigidBody = GetComponent<Rigidbody2D>();
 		animator = GetComponent<Animator>();
-		hp = maxHp;
+        if(numberOfThisPlayer == 1)
+            hp *= DataScript.BuffPlayer1;
+        else
+            hp *= DataScript.BuffPlayer2;
+        // hp = maxHp; // utile ??? plutot maxhp = hp ?
 	}
 
-	// Update is called once per frame
-	void Update() {
+    // Update is called once per frame
+    void Update() {
 		isGrounded = false;
 		Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheckPoint.position, groundCheckRadius, whatIsGround);
 		for (int i = 0; i < colliders.Length; i++) {

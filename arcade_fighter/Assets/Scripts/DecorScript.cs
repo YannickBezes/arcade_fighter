@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DecorScript : MonoBehaviour
 {
@@ -22,12 +23,29 @@ public class DecorScript : MonoBehaviour
     private GameObject pauseMenu;
     public KeyCode pause;
     private GameObject endMenu;
+    private GameObject countDown;
+    private GameObject countDownText;
+    private int timeCount;
+    private float lastCountDown;
+
+    public GameObject scoreP1, scoreP2;
 
     // Start is called before the first frame update
     void Start() {
         pauseMenu = GameObject.Find("PauseMenu");
         endMenu = GameObject.Find("EndMenu");
         endMenu.SetActive(false);
+        pauseMenu.SetActive(false);
+        countDownText = GameObject.Find("CountDownText");
+        countDown = GameObject.Find("CountDown");
+        Debug.Log(countDownText.GetComponent<Text>());
+        timeCount = 3;
+        countDownText.GetComponent<Text>().text = timeCount.ToString();
+        lastCountDown = Time.time;
+
+        DataScript.NumberOfGamesToWin = 3;
+        scoreP1.GetComponent<Text>().text = DataScript.ScorePlayer1.ToString();
+        scoreP2.GetComponent<Text>().text = DataScript.ScorePlayer2.ToString();
 
         Transform t = GameObject.Find("CharactersList").transform;
 
@@ -45,45 +63,92 @@ public class DecorScript : MonoBehaviour
             p.SetActive(true);
             p.GetComponent<Rigidbody2D>().gravityScale = gravity;
         }
-
     }
 
     // Update is called once per frame
     void Update() {
-        MoveCamera();
-
-        if(Random.Range(0, 1000) < itemSpawnRate && canSpawnItem) {
-            Vector3 pos = new Vector3(Random.Range(minSpawnPos, maxSpawnPos), spawnHeight, 0);
-            Instantiate(items[(int)Random.Range(0, items.Length)], pos, transform.rotation);
-            canSpawnItem = false;
+        if(timeCount > 0)
+        {
+            if(Time.time - lastCountDown >= 1)
+            {
+                timeCount--;
+                if(timeCount == 0)
+                {
+                    countDown.SetActive(false);
+                }
+                else
+                {
+                    countDownText.GetComponent<Text>().text = timeCount.ToString();
+                    lastCountDown = Time.time;
+                }
+            }
         }
+        else
+        {
+            MoveCamera();
 
-        if(Input.GetKeyDown(pause)) {
-            showPauseMenu = !showPauseMenu;
-        }
+            if (Random.Range(0, 1000) < itemSpawnRate && canSpawnItem)
+            {
+                Vector3 pos = new Vector3(Random.Range(minSpawnPos, maxSpawnPos), spawnHeight, 0);
+                Instantiate(items[(int)Random.Range(0, items.Length)], pos, transform.rotation);
+                canSpawnItem = false;
+            }
 
-        if (showPauseMenu) {
-            pauseMenu.SetActive(true);
-            Time.timeScale = 0;
-        } else {
-            HidePauseMenu();
-        }
+            if (Input.GetKeyDown(pause))
+            {
+                showPauseMenu = !showPauseMenu;
+            }
+
+            if (showPauseMenu)
+            {
+                pauseMenu.SetActive(true);
+                Time.timeScale = 0;
+            }
+            else
+            {
+                HidePauseMenu();
+            }
 
 
-		if(player1.GetComponent<Player>() != null && player2.GetComponent<Player>() != null) {
-			if (player1.GetComponent<Player>().hp <= 0 || player2.GetComponent<Player>().hp <= 0) {
-				Time.timeScale = 0;
-				endMenu.SetActive(true);
-				if (player1.GetComponent<Player>().hp <= 0) {
-					if (GameObject.Find("Player1Wins") != null) {
-						GameObject.Find("Player1Wins").SetActive(false);
-					}
-				} else {
-					if (GameObject.Find("Player2Wins") != null) {
-						GameObject.Find("Player2Wins").SetActive(false);
-					}
-				}
-			}
+            if (player1.GetComponent<Player>() != null && player2.GetComponent<Player>() != null)
+            {
+                if (player1.GetComponent<Player>().hp <= 0 || player2.GetComponent<Player>().hp <= 0)
+                {
+                    Time.timeScale = 0;
+                    if (player1.GetComponent<Player>().hp <= 0)
+                    {
+                        endMenu.SetActive(true);
+                        if (GameObject.Find("Player1Wins") != null)
+                        {
+                            DataScript.ScorePlayer2++;
+                            DataScript.BuffPlayer1 = 1.25f;   //Multiplie la vie du joueur 1 par 1.25
+                            GameObject.Find("Player1Wins").SetActive(false);
+                            if (DataScript.ScorePlayer2 >= DataScript.NumberOfGamesToWin)
+                            {
+                                GameObject.Find("ButtonNextMatch").SetActive(false);
+                                GameObject.Find("ButtonNextMatchBuff").SetActive(false);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        endMenu.SetActive(true);
+                        if (GameObject.Find("Player2Wins") != null)
+                        {
+                            DataScript.ScorePlayer1++;
+                            DataScript.BuffPlayer2 = 1.25f;   //Multiplie la vie du joueur 2 par 1.25
+                            GameObject.Find("Player2Wins").SetActive(false);
+                            if (DataScript.ScorePlayer1 >= DataScript.NumberOfGamesToWin)
+                            {
+                                GameObject.Find("ButtonNextMatch").SetActive(false);
+                                GameObject.Find("ButtonNextMatchBuff").SetActive(false);
+                            }
+                        }
+                    }
+                }
+            }
+
+        
 		}
         
     }

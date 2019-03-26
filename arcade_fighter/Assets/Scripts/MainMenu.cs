@@ -7,6 +7,11 @@ public class MainMenu : MonoBehaviour
 {
     public void startGame()
     {
+        DataScript.ScorePlayer1 = 0;
+        DataScript.ScorePlayer2 = 0;
+        DataScript.NumberOfGamesToWin = 3;
+        DataScript.BuffPlayer1 = 1;
+        DataScript.BuffPlayer2 = 1;
         SceneManager.LoadScene("Game");
     }
 

@@ -26,9 +26,12 @@ public class DecorScript : MonoBehaviour {
 
 	public GameObject scoreP1, scoreP2;
 
+    private BattleCountdown countdown;
+
     // Start is called before the first frame update
     void Start() {
         pauseMenu = GameObject.Find("PauseMenu");
+        pauseMenu.SetActive(false);
         endMenu = GameObject.Find("EndMenu");
         endMenu.SetActive(false);
 
@@ -53,31 +56,43 @@ public class DecorScript : MonoBehaviour {
             p.SetActive(true);
             p.GetComponent<Rigidbody2D>().gravityScale = gravity;
         }
+
+        countdown = GameObject.FindGameObjectWithTag("DecorTag").GetComponent<BattleCountdown>();
     }
 
     // Update is called once per frame
     void Update() {
-        MoveCamera();
 
-        if(Random.Range(0, 1000) < itemSpawnRate && canSpawnItem) {
-            Vector3 pos = new Vector3(Random.Range(minSpawnPos, maxSpawnPos), spawnHeight, 0);
-            Instantiate(items[(int)Random.Range(0, items.Length)], pos, transform.rotation);
-            canSpawnItem = false;
+        if (countdown.isGameReady)
+        {
+
+            MoveCamera();
+
+            if (Random.Range(0, 1000) < itemSpawnRate && canSpawnItem)
+            {
+                Vector3 pos = new Vector3(Random.Range(minSpawnPos, maxSpawnPos), spawnHeight, 0);
+                Instantiate(items[(int)Random.Range(0, items.Length)], pos, transform.rotation);
+                canSpawnItem = false;
+            }
+
+            if (Input.GetKeyDown(pause))
+            {
+                showPauseMenu = !showPauseMenu;
+            }
+
+            if (showPauseMenu)
+            {
+                pauseMenu.SetActive(true);
+                Time.timeScale = 0;
+            }
+            else
+            {
+                HidePauseMenu();
+            }
+
+            // END MENU
+            EndMenu();
         }
-
-        if(Input.GetKeyDown(pause)) {
-            showPauseMenu = !showPauseMenu;
-        }
-
-        if (showPauseMenu) {
-            pauseMenu.SetActive(true);
-            Time.timeScale = 0;
-        } else {
-            HidePauseMenu();
-        }
-
-        // END MENU
-		EndMenu();        
     }
 
     public void HidePauseMenu() {
@@ -127,6 +142,8 @@ public class DecorScript : MonoBehaviour {
 						playerWinText.text = player1.GetComponent<Player>().playerName + " win the round !";
 					}
 				}
+
+                BroadcastMessage("StopGameTime");
 			}
 		}
     }

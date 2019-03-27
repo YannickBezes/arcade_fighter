@@ -34,7 +34,14 @@ public class MainMenu : MonoBehaviour {
         DataScript.NumberOfGamesToWin = 3;
         DataScript.BuffPlayer1 = 1;
         DataScript.BuffPlayer2 = 1;
-        
+
+        //SceneManager.LoadScene("Game");
+        StartCoroutine(WaitSecondsBeforeLoadGame(2.0f));
+    }
+
+    private IEnumerator WaitSecondsBeforeLoadGame(float seconds)
+    {
+        yield return new WaitForSecondsRealtime(seconds);
         SceneManager.LoadScene("Game");
     }
 

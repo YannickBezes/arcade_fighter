@@ -3478,6 +3478,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8217290788619012531, guid: 306109a736dcc544bb1f2248a38df64b,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 207e7e2954d02954a8412d50951a6cb7, type: 2}
     - target: {fileID: 1873834821, guid: 306109a736dcc544bb1f2248a38df64b, type: 3}
       propertyPath: combo1.Array.size
       value: 3
@@ -3643,6 +3648,12 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 3626fe8e008014f6bbd19bb72937b311, type: 2}
+    - target: {fileID: 4296805683019516503, guid: 306109a736dcc544bb1f2248a38df64b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a8034c5af7fbd58489653109cf17689d,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 306109a736dcc544bb1f2248a38df64b, type: 3}
 --- !u!1 &1025069818

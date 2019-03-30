@@ -13,10 +13,18 @@ public class MainMenu : MonoBehaviour {
     private GameObject avatar_p1;
     private GameObject avatar_p2;
     private GameObject battleImg;
+    public Slider musicSlider;
+    public Slider soundSlider;
+
+    private float prevMusicVolume;
+    private float prevSoundVolume;
 
     private SharedVars vars;
 
-    public void Start() { }
+    public void Start() {
+        prevMusicVolume = musicSlider.value;
+        prevSoundVolume = soundSlider.value;
+    }
 
     public void StartGame() {
         Debug.Log("Start game");
@@ -37,6 +45,17 @@ public class MainMenu : MonoBehaviour {
 
         //SceneManager.LoadScene("Game");
         StartCoroutine(WaitSecondsBeforeLoadGame(2.0f));
+        StartCoroutine(BattleImageCoroutine(0.8f));
+    }
+
+    private IEnumerator BattleImageCoroutine(float seconds)
+    {
+        yield return new WaitForSecondsRealtime(seconds);
+        battleImg = GameObject.FindGameObjectWithTag("TagBattle");
+        battleImg.AddComponent<Outline>();
+        battleImg.GetComponent<Outline>().effectColor = new Color(0.0f, 0.0f, 0.0f);
+        battleImg.GetComponent<Outline>().effectDistance = new Vector2(2, 2);
+        battleImg.transform.localScale = new Vector2(2.0f, -2.0f);
     }
 
     private IEnumerator WaitSecondsBeforeLoadGame(float seconds)
@@ -147,5 +166,23 @@ public class MainMenu : MonoBehaviour {
         avatar_p2.GetComponent<Image>().sprite = avatars[current_avatar_p2];
 
         //battleImg = GameObject.FindGameObjectWithTag("TagBattle");
+    }
+
+    public void UpdateVolume()
+    {
+        SharedVars sharedVars = GameObject.FindGameObjectWithTag("ScriptTag").GetComponent<SharedVars>();
+        sharedVars.SetMusicVolume(musicSlider.value);
+        sharedVars.SetEffectsVolume(soundSlider.value);
+    }
+
+    public void CancelUpdateVolume()
+    {
+        musicSlider.value = prevMusicVolume;
+        soundSlider.value = prevSoundVolume;
+    }
+
+    public void Update()
+    {
+        
     }
 }

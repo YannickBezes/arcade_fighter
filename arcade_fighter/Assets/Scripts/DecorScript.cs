@@ -26,6 +26,9 @@ public class DecorScript : MonoBehaviour {
 
 	public GameObject scoreP1, scoreP2;
 
+    public AudioSource backgroundAudio;
+    public AudioSource[] effectsAudios;
+
     private BattleCountdown countdown;
 
     // Start is called before the first frame update
@@ -58,6 +61,10 @@ public class DecorScript : MonoBehaviour {
         }
 
         countdown = GameObject.FindGameObjectWithTag("DecorTag").GetComponent<BattleCountdown>();
+        SharedVars sharedVars = GameObject.FindGameObjectWithTag("BackgroundLoadingScriptTag").GetComponent<SharedVars>();
+        backgroundAudio.volume = sharedVars.GetMusicVolume();
+        foreach (AudioSource a in effectsAudios)
+            a.volume = sharedVars.GetEffectsVolme();
     }
 
     // Update is called once per frame
@@ -82,11 +89,15 @@ public class DecorScript : MonoBehaviour {
 
             if (showPauseMenu)
             {
+                if (backgroundAudio.isPlaying)
+                    backgroundAudio.Pause();
                 pauseMenu.SetActive(true);
                 Time.timeScale = 0;
             }
             else
             {
+                if (!backgroundAudio.isPlaying)
+                    backgroundAudio.Play();
                 HidePauseMenu();
             }
 
@@ -116,6 +127,7 @@ public class DecorScript : MonoBehaviour {
         if (player1.GetComponent<Player>() != null && player2.GetComponent<Player>() != null && !endMenuIsActive) {
 			if (player1.GetComponent<Player>().hp <= 0 || player2.GetComponent<Player>().hp <= 0) {
 				Time.timeScale = 0;
+                backgroundAudio.Pause();
                 endMenu.SetActive(true); // Display end menu
 				endMenuIsActive = true;
                 Text playerWinText = GameObject.Find("PlayerWins").GetComponent<Text>();

@@ -15,6 +15,12 @@ TagManager:
   - DecorItem
   - HudTag
   - DecorTag
+  - ScriptTag
+  - MusicTag
+  - EffectsMusicTag
+  - BackgroundLoadingScriptTag
+  - MusicSlider
+  - SoundSlider
   layers:
   - Default
   - TransparentFX

@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: -1783731295
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 8fb98a6035269e64a998f9b56828fc4f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a8034c5af7fbd58489653109cf17689d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -96,7 +96,7 @@ Animator:
   m_GameObject: {fileID: 1873834820}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5fc43f0c4b413534ba12c51c0e5e5f6f, type: 2}
+  m_Controller: {fileID: 9100000, guid: 207e7e2954d02954a8412d50951a6cb7, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 1
   m_ApplyRootMotion: 0
@@ -159,7 +159,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.375, y: 1.375}
+    oldSize: {x: 0.98734176, y: 1.1329114}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -180,6 +180,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09046cd6624133c4583072dd2cd5a844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerName: 
+  maxHp: 0
   hp: 100
   attack: 10
   range: 5
@@ -187,10 +189,19 @@ MonoBehaviour:
   crouchSpeedMultiplier: 0.5
   jumpForce: 10
   numberOfThisPlayer: 1
+  whatIsEnnemies:
+    serializedVersion: 2
+    m_Bits: 0
+  whatIsBreakable:
+    serializedVersion: 2
+    m_Bits: 0
+  attackRange: 0
   left: 113
   right: 100
   jump: 122
   crouch: 115
+  block: 0
+  meleAttack: 0
   rangedAttack: 0
   groundCheckPoint: {fileID: 454129238}
   isGrounded: 0
@@ -198,8 +209,13 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 1
+  faceRight: 0
   projectile: {fileID: 0}
-  throwPoint: {fileID: 0}
+  combos:
+    listCombos: []
+  timeBetweenAttacks: 0.5
+  isDamaged: 0
+  attackBoosted: 0
 --- !u!1 &227353600630196409
 GameObject:
   m_ObjectHideFlags: 0

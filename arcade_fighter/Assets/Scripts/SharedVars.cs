@@ -2,70 +2,59 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SharedVars : MonoBehaviour
-{
-    // Un nombre qui indique le numero de la scene entre 0~5
-    private static int sceneBackgroundIdx = 0;
-    private static int avatarIdxP1 = 0;
-    private static int avatarIdxP2 = 0;
+public class SharedVars : MonoBehaviour {
+	// Un nombre qui indique le numero de la scene entre 0~5
+	private static int sceneBackgroundIdx = 0;
+	private static int avatarIdxP1 = 0;
+	private static int avatarIdxP2 = 0;
 
-    [Range(0.0f, 1.0f)]
-    private static float musicVolume = 1.0f;
+	[Range(0.0f, 1.0f)]
+	private static float musicVolume = 1.0f;
 
-    [Range(0.0f, 1.0f)]
-    private static float effectsVolume = 1.0f;
+	[Range(0.0f, 1.0f)]
+	private static float effectsVolume = 1.0f;
 
-    public void SetMusicVolume(float val)
-    {
-        musicVolume = val;
-        Debug.Log("Music vol: " + musicVolume);
-    }
+	public void SetMusicVolume(float val) {
+		musicVolume = val;
+		Debug.Log("Music vol: " + musicVolume);
+	}
 
-    public void SetEffectsVolume(float val)
-    {
-        effectsVolume = val;
-        Debug.Log("Effects vol: " + effectsVolume);
-    }
+	public void SetEffectsVolume(float val) {
+		effectsVolume = val;
+		Debug.Log("Effects vol: " + effectsVolume);
+	}
 
-    public float GetMusicVolume()
-    {
-        Debug.Log("Get Music vol: " + musicVolume);
-        return musicVolume;
-    }
+	public float GetMusicVolume() {
+		Debug.Log("Get Music vol: " + musicVolume);
+		return musicVolume;
+	}
 
-    public float GetEffectsVolme()
-    {
-        Debug.Log("Get Effects vol: " + effectsVolume);
-        return effectsVolume;
-    }
+	public float GetEffectsVolme() {
+		Debug.Log("Get Effects vol: " + effectsVolume);
+		return effectsVolume;
+	}
 
-    public void SetSceneBackgroundIdx(int idx)
-    {
-        sceneBackgroundIdx = idx;
-    }
+	public void SetSceneBackgroundIdx(int idx) {
+		sceneBackgroundIdx = idx;
+	}
 
-    public int GetSceneBackgroundIdx()
-    {
-        return sceneBackgroundIdx;
-    }
+	public int GetSceneBackgroundIdx() {
+		return sceneBackgroundIdx;
+	}
 
-    public void SetAvatarIdxP1(int idx)
-    {
-        avatarIdxP1 = idx;
-    }
+	public void SetAvatarIdxP1(int idx) {
+		avatarIdxP1 = idx;
+	}
 
-    public void SetAvatarIdxP2(int idx)
-    {
-        avatarIdxP2 = idx;
-    }
+	public void SetAvatarIdxP2(int idx) {
+		avatarIdxP2 = idx;
+	}
 
-    public int GetAvatarIdxP1()
-    {
-        return avatarIdxP1;
-    }
+	public int GetAvatarIdxP1() {
+		return avatarIdxP1;
+	}
 
-    public int GetAvatarIdxP2()
-    {
-        return avatarIdxP2;
-    }
+	public int GetAvatarIdxP2() {
+		return avatarIdxP2;
+	}
 }

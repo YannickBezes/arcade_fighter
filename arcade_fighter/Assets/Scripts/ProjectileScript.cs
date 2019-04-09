@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class ProjectileScript: MonoBehaviour {
+public class ProjectileScript : MonoBehaviour {
 	public float projectileSpeed;
 	public float damage;
 
@@ -19,16 +17,14 @@ public class ProjectileScript: MonoBehaviour {
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision) {
-        if(collision.tag == "Player")
-        {
-            Player player = collision.GetComponent<Player>();
-            if (player != null)
-                player.TakeDamage(damage);
-        }
-        if (collision.tag == "DecorItem")
-        {
-            collision.GetComponent<DecorItemScript>().TakeDamage(damage);
-        }
-        Destroy(gameObject);
+		if (collision.tag == "Player") {
+			Player player = collision.GetComponent<Player>();
+			if (player != null)
+				player.TakeDamage(damage);
+		}
+		if (collision.tag == "DecorItem") {
+			collision.GetComponent<DecorItemScript>().TakeDamage(damage);
+		}
+		Destroy(gameObject);
 	}
 }

@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityStandardAssets.CrossPlatformInput;
 
 public class Player : MonoBehaviour {
 	// Character's specifications (can be changed in unity's inspector)
@@ -16,8 +14,8 @@ public class Player : MonoBehaviour {
 	public int numberOfThisPlayer;
 
 	public LayerMask whatIsEnnemies;
-    public LayerMask whatIsBreakable;
-    public float attackRange;
+	public LayerMask whatIsBreakable;
+	public float attackRange;
 
 	public KeyCode left;
 	public KeyCode right;
@@ -40,14 +38,14 @@ public class Player : MonoBehaviour {
 
 	public GameObject projectile;
 
-    // Combos part
+	// Combos part
 	public ListCombos combos;
 
-    private BattleCountdown countdown;
+	private BattleCountdown countdown;
 
-    private int[] currentComboIndex = new int[6];
-    public float timeBetweenAttacks = 0.5f;
-    private float timeLastButtonPressed;
+	private int[] currentComboIndex = new int[6];
+	public float timeBetweenAttacks = 0.5f;
+	private float timeLastButtonPressed;
 
 	// For query of PlayerHealth
 	public bool isDamaged = false;
@@ -57,57 +55,50 @@ public class Player : MonoBehaviour {
 
 	// Start is called before the first frame update
 	void Start() {
-        countdown = GameObject.FindGameObjectWithTag("DecorTag").GetComponent<BattleCountdown>();
+		countdown = GameObject.FindGameObjectWithTag("DecorTag").GetComponent<BattleCountdown>();
 		groundCheckPoint = transform.Find("GroundCheck");
 		rigidBody = GetComponent<Rigidbody2D>();
 		animator = GetComponent<Animator>();
-        if(numberOfThisPlayer == 1)
-            hp *= DataScript.BuffPlayer1;
-        else
-            hp *= DataScript.BuffPlayer2;
-        // hp = maxHp; // useful ??? rather maxhp = hp ?
+		if (numberOfThisPlayer == 1)
+			hp *= DataScript.BuffPlayer1;
+		else
+			hp *= DataScript.BuffPlayer2;
+		// hp = maxHp; // useful ??? rather maxhp = hp ?
 	}
 
-    // Update is called once per frame
-    void Update() {
-        if (countdown.isGameReady)
-        {
-            isGrounded = false;
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheckPoint.position, groundCheckRadius, whatIsGround);
-            for (int i = 0; i < colliders.Length; i++)
-            {
-                if (colliders[i].gameObject != gameObject)
-                    isGrounded = true;
-            }
-            animator.SetBool("Ground", isGrounded);
-            animator.SetFloat("vSpeed", rigidBody.velocity.y);
+	// Update is called once per frame
+	void Update() {
+		if (countdown.isGameReady) {
+			isGrounded = false;
+			Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheckPoint.position, groundCheckRadius, whatIsGround);
+			for (int i = 0; i < colliders.Length; i++) {
+				if (colliders[i].gameObject != gameObject)
+					isGrounded = true;
+			}
+			animator.SetBool("Ground", isGrounded);
+			animator.SetFloat("vSpeed", rigidBody.velocity.y);
 
-            Block();
-            // Attack method
-            if (!isBlocking)
-            { // If the player isn't blocking he can move and attack
-              // if this not a combo launch an normal attack
-                if (!IsCombo())
-                {
-                    RangedAttack();
-                    MeleAttack();
-                }
+			Block();
+			// Attack method
+			if (!isBlocking) { // If the player isn't blocking he can move and attack
+							   // if this not a combo launch an normal attack
+				if (!IsCombo()) {
+					RangedAttack();
+					MeleAttack();
+				}
 
-                // Move
-                float move = 0;
-                if (Input.GetKey(left))
-                {
-                    move = -1;
-                }
-                else if (Input.GetKey(right))
-                {
-                    move = 1;
-                }
-                bool isJumping = Input.GetKeyDown(jump);
-                bool isCrouching = Input.GetKey(crouch);
-                Move(move, isCrouching, isJumping);
-            }
-        }
+				// Move
+				float move = 0;
+				if (Input.GetKey(left)) {
+					move = -1;
+				} else if (Input.GetKey(right)) {
+					move = 1;
+				}
+				bool isJumping = Input.GetKeyDown(jump);
+				bool isCrouching = Input.GetKey(crouch);
+				Move(move, isCrouching, isJumping);
+			}
+		}
 	}
 
 	public void Move(float d, bool isCrouching, bool isJumping) {
@@ -157,17 +148,17 @@ public class Player : MonoBehaviour {
 	public void MeleAttack() {
 		if (Input.GetKeyDown(meleAttack)) {
 			animator.SetTrigger("MeleAttack"); // Start the animation "meleAttack"
-            float postion = faceRight ? 2f : -2f;
-            Collider2D[] ennemyColliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x + postion, transform.position.y), attackRange, whatIsEnnemies);
-            if (ennemyColliders.Length != 0) { // if the array isn't empty there is an ennemy in range
-                                               // Get the first collider of the ennemy and hit it
-                ennemyColliders[0].GetComponent<Player>().TakeDamage(attack);
-            }
-            Collider2D[] breakableColliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x + postion, transform.position.y), attackRange, whatIsBreakable);
-            if (breakableColliders.Length != 0) {
-                breakableColliders[0].GetComponent<DecorItemScript>().TakeDamage(attack * 1.5f);
-            }
-        }
+			float postion = faceRight ? 2f : -2f;
+			Collider2D[] ennemyColliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x + postion, transform.position.y), attackRange, whatIsEnnemies);
+			if (ennemyColliders.Length != 0) { // if the array isn't empty there is an ennemy in range
+											   // Get the first collider of the ennemy and hit it
+				ennemyColliders[0].GetComponent<Player>().TakeDamage(attack);
+			}
+			Collider2D[] breakableColliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x + postion, transform.position.y), attackRange, whatIsBreakable);
+			if (breakableColliders.Length != 0) {
+				breakableColliders[0].GetComponent<DecorItemScript>().TakeDamage(attack * 1.5f);
+			}
+		}
 	}
 
 	public void Block() {
@@ -241,15 +232,15 @@ public class Player : MonoBehaviour {
 	}
 
 	public void ChangeStats(float hpModifier, float attackModifier, float rangeModifier, float speedModifier) {
-        // HP can't be superior at 100
-		if(hp < 100)
-			hp = (hp + hpModifier) > 100 ? 100 : hp + hpModifier ;
-		
-		if(!attackBoosted) {
-	        attack += attackModifier;
-    	    attackRange += rangeModifier;
+		// HP can't be superior at 100
+		if (hp < 100)
+			hp = (hp + hpModifier) > 100 ? 100 : hp + hpModifier;
+
+		if (!attackBoosted) {
+			attack += attackModifier;
+			attackRange += rangeModifier;
 			attackBoosted = true;
 		}
-        speed += speedModifier;
-    }
-}   
+		speed += speedModifier;
+	}
+}

@@ -88,10 +88,10 @@ TextureImporter:
       name: Idle_0
       rect:
         serializedVersion: 2
-        x: 12
-        y: 16
-        width: 312
-        height: 358
+        x: 13
+        y: 10
+        width: 311
+        height: 435
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -99,7 +99,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 57b446e9341e36f4fa89f5028b5eeea4
+      spriteID: d17b823d7c78ca34180331ddc4137d04
       vertices: []
       indices: 
       edges: []

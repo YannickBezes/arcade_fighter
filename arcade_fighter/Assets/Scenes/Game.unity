@@ -4589,7 +4589,7 @@ PrefabInstance:
     - target: {fileID: 1125018133, guid: cb3271ef5eeb992409229d7fd581741d, type: 3}
       propertyPath: projectile
       value: 
-      objectReference: {fileID: 5607297278488647678, guid: 978146e93380572429d330ae172d1fff,
+      objectReference: {fileID: 5607297278488647678, guid: 9ab8dd5e9421b3d44bd79aff4b8c037c,
         type: 3}
     - target: {fileID: 1125018133, guid: cb3271ef5eeb992409229d7fd581741d, type: 3}
       propertyPath: throwPoint
@@ -4666,6 +4666,12 @@ PrefabInstance:
       propertyPath: m_FlipX
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2230595922993432429, guid: cb3271ef5eeb992409229d7fd581741d,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: bb45997b01f529f4e8371ed48a4e8d5a,
+        type: 3}
     - target: {fileID: 2970860075014809882, guid: cb3271ef5eeb992409229d7fd581741d,
         type: 3}
       propertyPath: m_Material
@@ -4676,6 +4682,21 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 3626fe8e008014f6bbd19bb72937b311, type: 2}
+    - target: {fileID: 8959229680577103940, guid: cb3271ef5eeb992409229d7fd581741d,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.8833333
+      objectReference: {fileID: 0}
+    - target: {fileID: 8959229680577103940, guid: cb3271ef5eeb992409229d7fd581741d,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7790131608575338957, guid: cb3271ef5eeb992409229d7fd581741d,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: e6e604afe54d03944bb3673308218dd2, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb3271ef5eeb992409229d7fd581741d, type: 3}
 --- !u!1 &1306676635

@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: bdf43e6d15e49b841894872e93fb09c8
+guid: 44149203ee358234bb3318b40d0c2d1a
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Crouch_0
+    21300000: EpeeLancee_0
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 316
+  spritePixelsToUnits: 15
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -85,13 +85,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Crouch_0
+      name: EpeeLancee_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 12
-        width: 317
-        height: 432
+        x: 10
+        y: 17
+        width: 182
+        height: 61
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -99,7 +99,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bfefbb6883157844f9f53cc647888373
+      spriteID: cbd5bd61449de7f43b7618ebd0d015b9
       vertices: []
       indices: 
       edges: []
@@ -107,7 +107,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: ee37c60efe0184b4f8e1f9104ac417cd
+    spriteID: 5fa657bf44f691543a74383e7ffd21a3
     vertices: []
     indices: 
     edges: []

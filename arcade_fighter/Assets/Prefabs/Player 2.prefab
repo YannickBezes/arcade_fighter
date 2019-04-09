@@ -96,7 +96,7 @@ Animator:
   m_GameObject: {fileID: 1125018132}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5fc43f0c4b413534ba12c51c0e5e5f6f, type: 2}
+  m_Controller: {fileID: 9100000, guid: e6e604afe54d03944bb3673308218dd2, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 1
   m_ApplyRootMotion: 0
@@ -180,6 +180,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09046cd6624133c4583072dd2cd5a844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerName: 
+  maxHp: 0
   hp: 100
   attack: 10
   range: 5
@@ -187,10 +189,19 @@ MonoBehaviour:
   crouchSpeedMultiplier: 0.5
   jumpForce: 10
   numberOfThisPlayer: 2
+  whatIsEnnemies:
+    serializedVersion: 2
+    m_Bits: 0
+  whatIsBreakable:
+    serializedVersion: 2
+    m_Bits: 0
+  attackRange: 0
   left: 276
   right: 275
   jump: 273
   crouch: 274
+  block: 0
+  meleAttack: 0
   rangedAttack: 0
   groundCheckPoint: {fileID: 1975844819}
   isGrounded: 0
@@ -198,8 +209,13 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 1
+  faceRight: 0
   projectile: {fileID: 0}
-  throwPoint: {fileID: 0}
+  combos:
+    listCombos: []
+  timeBetweenAttacks: 0.5
+  isDamaged: 0
+  attackBoosted: 0
 --- !u!1 &3267328211001300151
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bdf43e6d15e49b841894872e93fb09c8
+guid: bbb5e35f473fbb54b8ef379879b7f2bf
 TextureImporter:
   fileIDToRecycleName:
     21300000: Crouch_0
@@ -46,7 +46,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 316
+  spritePixelsToUnits: 420
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -88,10 +88,10 @@ TextureImporter:
       name: Crouch_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 12
-        width: 317
-        height: 432
+        x: 70
+        y: 66
+        width: 371
+        height: 460
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -99,7 +99,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bfefbb6883157844f9f53cc647888373
+      spriteID: b386a6454ed1bde4f8dcd7d89cd9cfcc
       vertices: []
       indices: 
       edges: []
@@ -107,7 +107,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: ee37c60efe0184b4f8e1f9104ac417cd
+    spriteID: 34b7383c88a779c4790be296fe66ce63
     vertices: []
     indices: 
     edges: []

@@ -27,15 +27,11 @@ public class MainMenu : MonoBehaviour {
 	}
 
 	public void StartGame() {
-		Debug.Log("Start game");
-
 		vars = this.GetComponent<SharedVars>();
 
 		vars.SetSceneBackgroundIdx(current_scene);
 		vars.SetAvatarIdxP1(current_avatar_p1);
 		vars.SetAvatarIdxP2(current_avatar_p2);
-
-		Debug.Log(vars.GetSceneBackgroundIdx());
 
 		DataScript.ScorePlayer1 = 0;
 		DataScript.ScorePlayer2 = 0;
@@ -44,8 +40,8 @@ public class MainMenu : MonoBehaviour {
 		DataScript.BuffPlayer2 = 1;
 
 		//SceneManager.LoadScene("Game");
-		StartCoroutine(WaitSecondsBeforeLoadGame(2.0f));
-		StartCoroutine(BattleImageCoroutine(0.8f));
+		StartCoroutine(WaitSecondsBeforeLoadGame(0.5f));
+		StartCoroutine(BattleImageCoroutine(0.01f));
 	}
 
 
@@ -84,10 +80,15 @@ public class MainMenu : MonoBehaviour {
 				btn_to_find = "ButtonStart";
 				break;
 
+			case "ButtonStart":
+				btn_to_find = "ButtonStart";
+				break;
+
 			default:
 				btn_to_find = "ButtonBack";
 				break;
 		}
+
 		Button next_button = GameObject.Find(btn_to_find).GetComponent<Button>();
 		next_button.Select();
 

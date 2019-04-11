@@ -31,7 +31,7 @@ public class DecorScript : MonoBehaviour {
 
 	private BattleCountdown countdown;
 
-	private bool firstPauseMenu = true;
+	public static bool firstPauseMenu = true;
 
 	// Start is called before the first frame update
 	void Start() {
@@ -71,7 +71,6 @@ public class DecorScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update() {
-
 		if (countdown.isGameReady) {
 
 			MoveCamera();
@@ -86,8 +85,6 @@ public class DecorScript : MonoBehaviour {
 				showPauseMenu = !showPauseMenu;
 				PauseMenu();
 			}
-
-
 
 			// END MENU
 			EndMenu();

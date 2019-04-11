@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class PauseMenuScript : MonoBehaviour {
 	public void resume() {
 		GameObject.Find("Decor").GetComponent<DecorScript>().HidePauseMenu();
+		DecorScript.firstPauseMenu = true; // Reset FirstPauseMenus
 	}
 
 	public void restart() {

@@ -117,7 +117,11 @@ public class MainMenu : MonoBehaviour {
 	}
 
 	public void OnPreMenuExit(GameObject bg) {
-		bg.GetComponent<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+        foreach (GameObject scene in scenes)
+        {
+            scene.SetActive(true);
+        }
+        bg.GetComponent<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
 	}
 
 	public void NextScene() {

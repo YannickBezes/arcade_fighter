@@ -109,7 +109,11 @@ public class MainMenu : MonoBehaviour {
 	}
 
 	public void OnPreMenuExit(GameObject bg) {
-		bg.GetComponent<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+        foreach (GameObject scene in scenes)
+        {
+            scene.SetActive(true);
+        }
+        bg.GetComponent<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
 	}
 
 	public void NextScene() {
@@ -134,13 +138,13 @@ public class MainMenu : MonoBehaviour {
 		if (isP1) {
 			Debug.Log("P1");
 			current_avatar_p1 += 1;
-			current_avatar_p1 %= 17;
+			current_avatar_p1 %= 4;
 			Debug.Log(current_avatar_p1);
 			avatar_p1.GetComponent<Image>().sprite = avatars[current_avatar_p1];
 		} else {
 			Debug.Log("P2");
 			current_avatar_p2 += 1;
-			current_avatar_p2 %= 17;
+			current_avatar_p2 %= 4;
 			Debug.Log(current_avatar_p2);
 			avatar_p2.GetComponent<Image>().sprite = avatars[current_avatar_p2];
 		}
@@ -150,7 +154,7 @@ public class MainMenu : MonoBehaviour {
 		if (isP1) {
 			Debug.Log("P1");
 			if (current_avatar_p1 == 0)
-				current_avatar_p1 = 16;
+				current_avatar_p1 = 3;
 			else
 				current_avatar_p1 -= 1;
 			Debug.Log(current_avatar_p1);
@@ -158,7 +162,7 @@ public class MainMenu : MonoBehaviour {
 		} else {
 			Debug.Log("P2");
 			if (current_avatar_p2 == 0)
-				current_avatar_p2 = 16;
+				current_avatar_p2 = 3;
 			else
 				current_avatar_p2 -= 1;
 			Debug.Log(current_avatar_p2);
@@ -183,8 +187,8 @@ public class MainMenu : MonoBehaviour {
 		avatars = Resources.LoadAll<Sprite>("Characters");
 		Debug.Log(avatars.Length);
 
-		current_avatar_p1 = 11;
-		current_avatar_p2 = 4;
+		current_avatar_p1 = 1;
+		current_avatar_p2 = 2;
 
 		avatar_p1 = GameObject.FindGameObjectWithTag("TagAvatarP1");
 		avatar_p2 = GameObject.FindGameObjectWithTag("TagAvatarP2");

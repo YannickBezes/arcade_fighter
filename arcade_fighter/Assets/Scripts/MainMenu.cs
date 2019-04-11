@@ -15,6 +15,7 @@ public class MainMenu : MonoBehaviour {
 	private GameObject battleImg;
 	public Slider musicSlider;
 	public Slider soundSlider;
+    public int numberOfCharacters;
 
 	private float prevMusicVolume;
 	private float prevSoundVolume;
@@ -27,11 +28,18 @@ public class MainMenu : MonoBehaviour {
 	}
 
 	public void StartGame() {
+		Debug.Log("Start game");
+
 		vars = this.GetComponent<SharedVars>();
 
 		vars.SetSceneBackgroundIdx(current_scene);
 		vars.SetAvatarIdxP1(current_avatar_p1);
 		vars.SetAvatarIdxP2(current_avatar_p2);
+
+        DataScript.P1selection = current_avatar_p1;
+        DataScript.P2selection = current_avatar_p2;
+
+        Debug.Log(vars.GetSceneBackgroundIdx());
 
 		DataScript.ScorePlayer1 = 0;
 		DataScript.ScorePlayer2 = 0;
@@ -39,7 +47,6 @@ public class MainMenu : MonoBehaviour {
 		DataScript.BuffPlayer1 = 1;
 		DataScript.BuffPlayer2 = 1;
 
-		//SceneManager.LoadScene("Game");
 		StartCoroutine(WaitSecondsBeforeLoadGame(0.5f));
 		StartCoroutine(BattleImageCoroutine(0.01f));
 	}
@@ -135,13 +142,13 @@ public class MainMenu : MonoBehaviour {
 		if (isP1) {
 			Debug.Log("P1");
 			current_avatar_p1 += 1;
-			current_avatar_p1 %= 17;
+			current_avatar_p1 %= numberOfCharacters;
 			Debug.Log(current_avatar_p1);
 			avatar_p1.GetComponent<Image>().sprite = avatars[current_avatar_p1];
 		} else {
 			Debug.Log("P2");
 			current_avatar_p2 += 1;
-			current_avatar_p2 %= 17;
+			current_avatar_p2 %= numberOfCharacters;
 			Debug.Log(current_avatar_p2);
 			avatar_p2.GetComponent<Image>().sprite = avatars[current_avatar_p2];
 		}
@@ -151,7 +158,7 @@ public class MainMenu : MonoBehaviour {
 		if (isP1) {
 			Debug.Log("P1");
 			if (current_avatar_p1 == 0)
-				current_avatar_p1 = 16;
+				current_avatar_p1 = numberOfCharacters - 1;
 			else
 				current_avatar_p1 -= 1;
 			Debug.Log(current_avatar_p1);
@@ -159,9 +166,10 @@ public class MainMenu : MonoBehaviour {
 		} else {
 			Debug.Log("P2");
 			if (current_avatar_p2 == 0)
-				current_avatar_p2 = 16;
-			else
+				current_avatar_p2 = numberOfCharacters - 1;
+			else {
 				current_avatar_p2 -= 1;
+			}
 			Debug.Log(current_avatar_p2);
 			avatar_p2.GetComponent<Image>().sprite = avatars[current_avatar_p2];
 		}
@@ -184,8 +192,8 @@ public class MainMenu : MonoBehaviour {
 		avatars = Resources.LoadAll<Sprite>("Characters");
 		Debug.Log(avatars.Length);
 
-		current_avatar_p1 = 11;
-		current_avatar_p2 = 4;
+		current_avatar_p1 = 0;
+		current_avatar_p2 = 0;
 
 		avatar_p1 = GameObject.FindGameObjectWithTag("TagAvatarP1");
 		avatar_p2 = GameObject.FindGameObjectWithTag("TagAvatarP2");

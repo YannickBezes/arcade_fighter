@@ -15,8 +15,9 @@ GameObject:
   - component: {fileID: 8425771016310564808}
   - component: {fileID: 8959229680577103940}
   - component: {fileID: 1125018133}
+  - component: {fileID: 6120695313293712275}
   m_Layer: 0
-  m_Name: Player 2
+  m_Name: RobotBoy
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -96,7 +97,7 @@ Animator:
   m_GameObject: {fileID: 1125018132}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e6e604afe54d03944bb3673308218dd2, type: 2}
+  m_Controller: {fileID: 9100000, guid: 5fc43f0c4b413534ba12c51c0e5e5f6f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 1
   m_ApplyRootMotion: 0
@@ -114,7 +115,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 1125018132}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 3626fe8e008014f6bbd19bb72937b311, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -136,8 +137,8 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 3
-  m_Material: {fileID: 0}
+  m_GravityScale: 6
+  m_Material: {fileID: 6200000, guid: 3626fe8e008014f6bbd19bb72937b311, type: 2}
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -151,11 +152,11 @@ BoxCollider2D:
   m_GameObject: {fileID: 1125018132}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 3626fe8e008014f6bbd19bb72937b311, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.03, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -166,7 +167,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.25, y: 0.68}
+  m_Size: {x: 0.31, y: 0.94}
   m_EdgeRadius: 0
 --- !u!114 &1125018133
 MonoBehaviour:
@@ -180,42 +181,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09046cd6624133c4583072dd2cd5a844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerName: 
-  maxHp: 0
+  playerName: RobotBoy
+  maxHp: 100
   hp: 100
   attack: 10
   range: 5
   speed: 10
   crouchSpeedMultiplier: 0.5
-  jumpForce: 10
-  numberOfThisPlayer: 2
+  jumpForce: 22
+  numberOfThisPlayer: 1
   whatIsEnnemies:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   whatIsBreakable:
     serializedVersion: 2
-    m_Bits: 0
-  attackRange: 0
-  left: 276
-  right: 275
-  jump: 273
-  crouch: 274
-  block: 0
-  meleAttack: 0
-  rangedAttack: 0
+    m_Bits: 2048
+  attackRange: 0.3
+  block: 332
+  meleAttack: 330
+  rangedAttack: 331
   groundCheckPoint: {fileID: 1975844819}
   isGrounded: 0
   groundCheckRadius: 0.2
   whatIsGround:
     serializedVersion: 2
     m_Bits: 1
-  faceRight: 0
-  projectile: {fileID: 0}
+  faceRight: 1
+  projectile: {fileID: 5607297278488647678, guid: 978146e93380572429d330ae172d1fff,
+    type: 3}
   combos:
     listCombos: []
   timeBetweenAttacks: 0.5
   isDamaged: 0
   attackBoosted: 0
+--- !u!114 &6120695313293712275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1125018132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38c68180f46b2e44f994fa98832d33a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthSlider: {fileID: 0}
+  currentHealth: 0
 --- !u!1 &3267328211001300151
 GameObject:
   m_ObjectHideFlags: 0

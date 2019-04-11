@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
@@ -17,10 +18,6 @@ public class Player : MonoBehaviour {
 	public LayerMask whatIsBreakable;
 	public float attackRange;
 
-	public KeyCode left;
-	public KeyCode right;
-	public KeyCode jump;
-	public KeyCode crouch;
 	public KeyCode block;
 	public KeyCode meleAttack;
 	public KeyCode rangedAttack;
@@ -87,33 +84,43 @@ public class Player : MonoBehaviour {
 					MeleAttack();
 				}
 
+
 				// Move
-				float move = 0;
-				if (Input.GetKey(left)) {
-					move = -1;
-				} else if (Input.GetKey(right)) {
-					move = 1;
-				}
-				bool isJumping = Input.GetKeyDown(jump);
-				bool isCrouching = Input.GetKey(crouch);
-				Move(move, isCrouching, isJumping);
+				Move();
+
+				//float move = 0;
+				//if (Input.GetKey(left)) {
+				//	move = -1;
+				//} else if (Input.GetKey(right)) {
+				//	move = 1;
+				//}
+				//bool isJumping = Input.GetKeyDown(jump);
+				//bool isCrouching = Input.GetKey(crouch);
+				//Move(move, isCrouching, isJumping);
 			}
 		}
 	}
 
-	public void Move(float d, bool isCrouching, bool isJumping) {
-		animator.SetBool("Crouch", isCrouching);
-		d = (isCrouching ? d * crouchSpeedMultiplier : d);
-		animator.SetFloat("Speed", Mathf.Abs(d));
+	public void Move(float distance = 1f) {
+		if (distance == 1f) { // Default parameter 
+			distance = Input.GetAxis("Horizontal");
+		}
 
-		rigidBody.velocity = new Vector2(d * speed, rigidBody.velocity.y);
+		bool isCrouching = Input.GetAxis("Vertical") < 0 ? true : false;
+		bool isJumping = Input.GetAxis("Vertical") > 0 ? true : false;
+
+		animator.SetBool("Crouch", isCrouching);
+		distance = (isCrouching ? distance * crouchSpeedMultiplier : distance);
+		animator.SetFloat("Speed", Mathf.Abs(distance));
+
+		rigidBody.velocity = new Vector2(distance * speed, rigidBody.velocity.y);
 
 		// If the input is moving the player right and the player is facing left...
-		if (d > 0 && !faceRight) {
+		if (distance > 0 && !faceRight) {
 			// ... flip the player.
 			FlipPlayer();
-		} else if (d < 0 && faceRight) { // Otherwise if the input is moving the player left and the player is facing right...
-										 // ... flip the player.
+		} else if (distance < 0 && faceRight) { // Otherwise if the input is moving the player left and the player is facing right...
+												// ... flip the player.
 			FlipPlayer();
 		}
 
@@ -133,7 +140,6 @@ public class Player : MonoBehaviour {
 	}
 
 	public void TakeDamage(float damage) {
-		//isDamaged = true;
 		// If the player doesn't counter the attack he take damage
 		if (!isBlocking) {
 			hp -= damage;
@@ -142,7 +148,19 @@ public class Player : MonoBehaviour {
 			hp -= damage * 0.25f;
 			Debug.Log("Damage Taken !" + damage * 0.25f);
 		}
-		//isDamaged = false;
+
+		StartCoroutine(SpriteFlash());
+	}
+
+	IEnumerator SpriteFlash() {
+		SpriteRenderer sprite = gameObject.GetComponent<SpriteRenderer>();
+		sprite.color = new Color(1.0f, 1.0f, 1.0f, 0.4f);
+		yield return new WaitForSeconds(0.05f);
+		sprite.color = new Color(1.0f, 1.0f, 1.0f);
+		yield return new WaitForSeconds(0.1f);
+		sprite.color = new Color(1.0f, 1.0f, 1.0f, 0.4f);
+		yield return new WaitForSeconds(0.05f);
+		sprite.color = new Color(1.0f, 1.0f, 1.0f);
 	}
 
 	public void MeleAttack() {
@@ -164,7 +182,7 @@ public class Player : MonoBehaviour {
 	public void Block() {
 		if (Input.GetKey(block)) {
 			isBlocking = true;
-			Move(0, false, false);
+			Move(0);
 		} else isBlocking = false;
 		// Launch the annimation
 		animator.SetBool("Block", isBlocking);

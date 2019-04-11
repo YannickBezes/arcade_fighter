@@ -12,6 +12,8 @@ public class DecorScript : MonoBehaviour {
 	private GameObject player1, player2;
 	public int player1Selection, player2Selection;
 
+    public KeyCode p2block, p2meleeAttack, p2rangedAttack;
+
 	// Items stuff
 	public GameObject[] items;
 	public int itemSpawnRate;
@@ -31,7 +33,7 @@ public class DecorScript : MonoBehaviour {
 
 	private BattleCountdown countdown;
 
-	private bool firstPauseMenu = true;
+	public static bool firstPauseMenu = true;
 
 	// Start is called before the first frame update
 	void Start() {
@@ -53,7 +55,11 @@ public class DecorScript : MonoBehaviour {
 		foreach (GameObject go in charactersList)
 			go.SetActive(false);
 
-		player1 = charactersList[player1Selection];
+        Debug.Log("p1 : " + DataScript.P1selection + " | " + player1Selection);
+        player1Selection = DataScript.P1selection;
+        player2Selection = DataScript.P2selection;
+
+        player1 = charactersList[player1Selection];
 		player2 = charactersList[player2Selection];
 
 		// Set Gravity to the players and set them active
@@ -61,6 +67,17 @@ public class DecorScript : MonoBehaviour {
 			p.SetActive(true);
 			p.GetComponent<Rigidbody2D>().gravityScale = gravity;
 		}
+
+        player2.GetComponent<Player>().numberOfThisPlayer = 2;
+        player2.layer = LayerMask.NameToLayer("Player2");
+        player2.GetComponent<Player>().whatIsEnnemies = LayerMask.GetMask("Player1");
+        player2.GetComponent<Player>().block = p2block;
+        player2.GetComponent<Player>().meleAttack = p2meleeAttack;
+        player2.GetComponent<Player>().rangedAttack = p2rangedAttack;
+        player2.GetComponent<PlayerHealth>().healthSlider = GameObject.Find("HealthSlider2").GetComponent<Slider>();
+
+        player2.transform.position = new Vector3(6.25f, player2.transform.position.y, player2.transform.position.z);
+        player2.GetComponent<Player>().FlipPlayer();
 
 		countdown = GameObject.FindGameObjectWithTag("DecorTag").GetComponent<BattleCountdown>();
 		SharedVars sharedVars = GameObject.FindGameObjectWithTag("BackgroundLoadingScriptTag").GetComponent<SharedVars>();
@@ -71,7 +88,6 @@ public class DecorScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update() {
-
 		if (countdown.isGameReady) {
 
 			MoveCamera();
@@ -86,8 +102,6 @@ public class DecorScript : MonoBehaviour {
 				showPauseMenu = !showPauseMenu;
 				PauseMenu();
 			}
-
-
 
 			// END MENU
 			EndMenu();

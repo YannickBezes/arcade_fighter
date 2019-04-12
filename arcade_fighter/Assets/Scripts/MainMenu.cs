@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -15,7 +14,7 @@ public class MainMenu : MonoBehaviour {
 	private GameObject battleImg;
 	public Slider musicSlider;
 	public Slider soundSlider;
-    public int numberOfCharacters;
+	public int numberOfCharacters;
 
 	private float prevMusicVolume;
 	private float prevSoundVolume;
@@ -36,10 +35,10 @@ public class MainMenu : MonoBehaviour {
 		vars.SetAvatarIdxP1(current_avatar_p1);
 		vars.SetAvatarIdxP2(current_avatar_p2);
 
-        DataScript.P1selection = current_avatar_p1;
-        DataScript.P2selection = current_avatar_p2;
+		DataScript.P1selection = current_avatar_p1;
+		DataScript.P2selection = current_avatar_p2;
 
-        Debug.Log(vars.GetSceneBackgroundIdx());
+		Debug.Log(vars.GetSceneBackgroundIdx());
 
 		DataScript.ScorePlayer1 = 0;
 		DataScript.ScorePlayer2 = 0;
@@ -117,11 +116,10 @@ public class MainMenu : MonoBehaviour {
 	}
 
 	public void OnPreMenuExit(GameObject bg) {
-        foreach (GameObject scene in scenes)
-        {
-            scene.SetActive(true);
-        }
-        bg.GetComponent<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+		foreach (GameObject scene in scenes) {
+			scene.SetActive(true);
+		}
+		bg.GetComponent<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
 	}
 
 	public void NextScene() {

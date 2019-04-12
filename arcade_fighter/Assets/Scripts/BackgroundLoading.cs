@@ -1,12 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class BackgroundLoading : MonoBehaviour {
 	private SharedVars vars;
-	private string[] scenePath =
-	{
+	private string[] scenePath = {
 		"Background/Scene1",
 		"Background/Scene2",
 		"Background/Scene3",
@@ -15,8 +12,7 @@ public class BackgroundLoading : MonoBehaviour {
 		"Background/Scene6"
 	};
 
-	private Vector3[] sceneScaleFactors =
-	{
+	private Vector3[] sceneScaleFactors = {
 		new Vector3(6.2f, 6.3f, 1.0f),
 		new Vector3(6.2f, 6.3f, 1.0f),
 		new Vector3(5.8f, 5.9f, 1.0f),
@@ -25,8 +21,7 @@ public class BackgroundLoading : MonoBehaviour {
 		new Vector3(5.5f, 5.6f, 1.0f)
 	};
 
-	private Vector3[] groundPositions =
-	{
+	private Vector3[] groundPositions = {
 		new Vector3(-7.5f, -2.2f, 0.0f),
 		new Vector3(-7.5f, -2.2f, 0.0f),
 		new Vector3(-7.5f, -2.2f, 0.0f),
@@ -57,6 +52,5 @@ public class BackgroundLoading : MonoBehaviour {
 	}
 
 	// Update is called once per frame
-	void Update() {
-	}
+	void Update() { }
 }

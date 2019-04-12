@@ -103,7 +103,7 @@ public class Player : MonoBehaviour {
 
 	public void Move(float distance = 1f) {
 		string suffix = "";
-		if(gameObject.GetComponent<Player>().numberOfThisPlayer == 2) {
+		if (gameObject.GetComponent<Player>().numberOfThisPlayer == 2) {
 			suffix = "P2";
 		}
 

@@ -171,9 +171,8 @@ public class MainMenu : MonoBehaviour {
 			Debug.Log("P2");
 			if (current_avatar_p2 == 0)
 				current_avatar_p2 = numberOfCharacters - 1;
-			else {
+			else
 				current_avatar_p2 -= 1;
-			}
 			Debug.Log(current_avatar_p2);
 			avatar_p2.GetComponent<Image>().sprite = avatars[current_avatar_p2];
 		}

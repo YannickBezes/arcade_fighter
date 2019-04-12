@@ -102,12 +102,17 @@ public class Player : MonoBehaviour {
 	}
 
 	public void Move(float distance = 1f) {
-		if (distance == 1f) { // Default parameter 
-			distance = Input.GetAxis("Horizontal");
+		string suffix = "";
+		if(gameObject.GetComponent<Player>().numberOfThisPlayer == 2) {
+			suffix = "P2";
 		}
 
-		bool isCrouching = Input.GetAxis("Vertical") < 0 ? true : false;
-		bool isJumping = Input.GetAxis("Vertical") > 0 ? true : false;
+		if (distance == 1f) { // Default parameter 
+			distance = Input.GetAxis("Horizontal" + suffix);
+		}
+
+		bool isCrouching = Input.GetAxis("Vertical" + suffix) < 0 ? true : false;
+		bool isJumping = Input.GetAxis("Vertical" + suffix) > 0 ? true : false;
 
 		animator.SetBool("Crouch", isCrouching);
 		distance = (isCrouching ? distance * crouchSpeedMultiplier : distance);

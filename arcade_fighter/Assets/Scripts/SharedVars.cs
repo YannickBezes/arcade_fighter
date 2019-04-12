@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SharedVars : MonoBehaviour {
 	// Un nombre qui indique le numero de la scene entre 0~5

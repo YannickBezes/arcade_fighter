@@ -13,11 +13,11 @@ public static class DataScript {
 
 	public static int NumberOfGamesToWin { get { return numberOfGamesToWin; } set { numberOfGamesToWin = value; } }
 
-    public static int P1selection { get { return p1selection; } set { p1selection = value; } }
+	public static int P1selection { get { return p1selection; } set { p1selection = value; } }
 
-    public static int P2selection { get { return p2selection; } set { p2selection = value; } }
+	public static int P2selection { get { return p2selection; } set { p2selection = value; } }
 
-    public static float BuffPlayer1 { get { return buffPlayer1; } set { buffPlayer1 = value; } }
+	public static float BuffPlayer1 { get { return buffPlayer1; } set { buffPlayer1 = value; } }
 
 	public static float BuffPlayer2 { get { return buffPlayer2; } set { buffPlayer2 = value; } }
 }

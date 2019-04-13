@@ -16,7 +16,7 @@ public class Player : MonoBehaviour {
 
 	public LayerMask whatIsEnnemies;
 	public LayerMask whatIsBreakable;
-	public float attackRange;
+	public float zoneAttack;
 
 	public KeyCode block;
 	public KeyCode meleAttack;
@@ -171,13 +171,13 @@ public class Player : MonoBehaviour {
 	public void MeleAttack() {
 		if (Input.GetKeyDown(meleAttack)) {
 			animator.SetTrigger("MeleAttack"); // Start the animation "meleAttack"
-			float postion = faceRight ? 2f : -2f;
-			Collider2D[] ennemyColliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x + postion, transform.position.y), attackRange, whatIsEnnemies);
+			float postion = faceRight ? range : -range;
+			Collider2D[] ennemyColliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x + postion, transform.position.y), zoneAttack, whatIsEnnemies);
 			if (ennemyColliders.Length != 0) { // if the array isn't empty there is an ennemy in range
 											   // Get the first collider of the ennemy and hit it
 				ennemyColliders[0].GetComponent<Player>().TakeDamage(attack);
 			}
-			Collider2D[] breakableColliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x + postion, transform.position.y), attackRange, whatIsBreakable);
+			Collider2D[] breakableColliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x + postion, transform.position.y), zoneAttack, whatIsBreakable);
 			if (breakableColliders.Length != 0) {
 				breakableColliders[0].GetComponent<DecorItemScript>().TakeDamage(attack * 1.5f);
 			}
@@ -261,7 +261,7 @@ public class Player : MonoBehaviour {
 
 		if (!attackBoosted) {
 			attack += attackModifier;
-			attackRange += rangeModifier;
+			zoneAttack += rangeModifier;
 			attackBoosted = true;
 		}
 		speed += speedModifier;

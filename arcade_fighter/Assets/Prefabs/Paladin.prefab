@@ -185,7 +185,7 @@ MonoBehaviour:
   maxHp: 100
   hp: 100
   attack: 10
-  range: 5
+  range: 3
   speed: 10
   crouchSpeedMultiplier: 0.5
   jumpForce: 22
@@ -196,7 +196,7 @@ MonoBehaviour:
   whatIsBreakable:
     serializedVersion: 2
     m_Bits: 2048
-  attackRange: 0.3
+  zoneAttack: 0.4
   block: 332
   meleAttack: 330
   rangedAttack: 331

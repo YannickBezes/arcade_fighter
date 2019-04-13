@@ -88,10 +88,10 @@ TextureImporter:
       name: Crouch_0
       rect:
         serializedVersion: 2
-        x: 70
-        y: 66
-        width: 371
-        height: 460
+        x: 71
+        y: 67
+        width: 369
+        height: 459
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -99,7 +99,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b386a6454ed1bde4f8dcd7d89cd9cfcc
+      spriteID: 282a87c085b90ca46b687ee9ef4cd212
       vertices: []
       indices: 
       edges: []

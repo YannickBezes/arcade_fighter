@@ -45,8 +45,9 @@ public class BackgroundLoading : MonoBehaviour {
 		Debug.Log("Characters/c" + vars.GetAvatarIdxP1());
 		Debug.Log("Characters/c" + vars.GetAvatarIdxP2());
 
-		Sprite[] avatars = Resources.LoadAll<Sprite>("Characters");
+		Sprite[] avatars = Resources.LoadAll<Sprite>("Characters"); // Get avatarts
 
+		// Set the avatar of players
 		GameObject.FindGameObjectWithTag("TagAvatarP1").GetComponent<Image>().sprite = avatars[vars.GetAvatarIdxP1()];
 		GameObject.FindGameObjectWithTag("TagAvatarP2").GetComponent<Image>().sprite = avatars[vars.GetAvatarIdxP2()];
 	}

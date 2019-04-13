@@ -240,7 +240,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.8833333, y: 1.15}
+    oldSize: {x: 0.87857145, y: 1.147619}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -265,7 +265,7 @@ MonoBehaviour:
   maxHp: 100
   hp: 100
   attack: 6
-  range: 5
+  range: 1.5
   speed: 10
   crouchSpeedMultiplier: 0.5
   jumpForce: 22
@@ -276,7 +276,7 @@ MonoBehaviour:
   whatIsBreakable:
     serializedVersion: 2
     m_Bits: 2048
-  attackRange: 0.3
+  zoneAttack: 0.8
   block: 332
   meleAttack: 330
   rangedAttack: 331

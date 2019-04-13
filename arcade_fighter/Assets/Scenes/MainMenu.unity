@@ -144,7 +144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSlider: {fileID: 1534209785}
   soundSlider: {fileID: 401609339}
-  numberOfCharacters: 4
+  numberOfCharacters: 7
 --- !u!4 &16720484
 Transform:
   m_ObjectHideFlags: 0

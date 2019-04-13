@@ -11,8 +11,7 @@ public class PlayerHealth : MonoBehaviour {
 	private Player playerInfo;
 	private Image sliderFlashImage;
 
-	// Start is called before the first frame update
-	void Start() {
+	public void Initialize() {
 		playerInfo = GetComponent<Player>();
 		sliderFlashImage = healthSlider.GetComponentInChildren<Image>();
 		sliderFlashColorStart = sliderFlashImage.color;

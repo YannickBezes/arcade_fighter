@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8334373646174041442}
   - component: {fileID: 1151856357372434227}
   - component: {fileID: 1151856357623788427}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Swordman
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -185,7 +185,7 @@ MonoBehaviour:
   maxHp: 100
   hp: 100
   attack: 6
-  range: 5
+  range: 2.8
   speed: 10
   crouchSpeedMultiplier: 0.5
   jumpForce: 22
@@ -196,7 +196,7 @@ MonoBehaviour:
   whatIsBreakable:
     serializedVersion: 2
     m_Bits: 2048
-  attackRange: 0.3
+  zoneAttack: 0.8
   block: 332
   meleAttack: 330
   rangedAttack: 331
@@ -237,7 +237,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1151856357612126965}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: -2065832391, guid: 0000000000000000d000000000000000, type: 0}
@@ -267,7 +267,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8721988803370647417}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CeilingCheck
   m_TagString: Untagged
   m_Icon: {fileID: -2065832391, guid: 0000000000000000d000000000000000, type: 0}

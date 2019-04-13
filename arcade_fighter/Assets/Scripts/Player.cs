@@ -111,11 +111,11 @@ public class Player : MonoBehaviour {
 			distance = Input.GetAxis("Horizontal" + suffix);
 		}
 
-		bool isCrouching = Input.GetAxis("Vertical" + suffix) < 0 ? true : false;
+		// bool isCrouching = Input.GetAxis("Vertical" + suffix) < 0 ? true : false;
 		bool isJumping = Input.GetAxis("Vertical" + suffix) > 0 ? true : false;
 
-		animator.SetBool("Crouch", isCrouching);
-		distance = (isCrouching ? distance * crouchSpeedMultiplier : distance);
+		// animator.SetBool("Crouch", isCrouching);
+		//distance = (isCrouching ? distance * crouchSpeedMultiplier : distance);
 		animator.SetFloat("Speed", Mathf.Abs(distance));
 
 		rigidBody.velocity = new Vector2(distance * speed, rigidBody.velocity.y);

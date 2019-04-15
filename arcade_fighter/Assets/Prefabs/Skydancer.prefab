@@ -262,13 +262,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerName: SkyDancer
-  maxHp: 100
-  hp: 100
+  maxHp: 50
+  hp: 50
   attack: 6
   range: 1.5
-  speed: 10
+  speed: 15
   crouchSpeedMultiplier: 0.5
-  jumpForce: 22
+  jumpForce: 33
   numberOfThisPlayer: 1
   whatIsEnnemies:
     serializedVersion: 2
@@ -280,6 +280,8 @@ MonoBehaviour:
   block: 332
   meleAttack: 330
   rangedAttack: 331
+  button3: 333
+  button4: 334
   groundCheckPoint: {fileID: 5943078506481057665}
   isGrounded: 0
   groundCheckRadius: 0.2
@@ -290,7 +292,13 @@ MonoBehaviour:
   projectile: {fileID: 5607297278488647678, guid: 9ab8dd5e9421b3d44bd79aff4b8c037c,
     type: 3}
   combos:
-    listCombos: []
+    listCombos:
+    - listKeyCode: 000000000100000000000000
+      damage: 8
+    - listKeyCode: 01000000040000000300000000000000
+      damage: 9
+    - listKeyCode: 0300000001000000040000000100000000000000
+      damage: 11
   timeBetweenAttacks: 0.5
   isDamaged: 0
   attackBoosted: 0

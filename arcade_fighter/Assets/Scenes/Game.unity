@@ -282,6 +282,31 @@ PrefabInstance:
       propertyPath: healthSlider
       value: 
       objectReference: {fileID: 1560563440}
+    - target: {fileID: 2494816000783712024, guid: c18a5aa7ffcdffd45b209b62daba93cc,
+        type: 3}
+      propertyPath: block
+      value: 98
+      objectReference: {fileID: 0}
+    - target: {fileID: 2494816000783712024, guid: c18a5aa7ffcdffd45b209b62daba93cc,
+        type: 3}
+      propertyPath: meleAttack
+      value: 99
+      objectReference: {fileID: 0}
+    - target: {fileID: 2494816000783712024, guid: c18a5aa7ffcdffd45b209b62daba93cc,
+        type: 3}
+      propertyPath: rangedAttack
+      value: 118
+      objectReference: {fileID: 0}
+    - target: {fileID: 2494816000783712024, guid: c18a5aa7ffcdffd45b209b62daba93cc,
+        type: 3}
+      propertyPath: button3
+      value: 102
+      objectReference: {fileID: 0}
+    - target: {fileID: 2494816000783712024, guid: c18a5aa7ffcdffd45b209b62daba93cc,
+        type: 3}
+      propertyPath: button4
+      value: 103
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c18a5aa7ffcdffd45b209b62daba93cc, type: 3}
 --- !u!4 &60329436 stripped
@@ -1528,6 +1553,31 @@ PrefabInstance:
       propertyPath: healthSlider
       value: 
       objectReference: {fileID: 1560563440}
+    - target: {fileID: 1151856357372434227, guid: 72657b40df415624a9296905b395b7c5,
+        type: 3}
+      propertyPath: block
+      value: 98
+      objectReference: {fileID: 0}
+    - target: {fileID: 1151856357372434227, guid: 72657b40df415624a9296905b395b7c5,
+        type: 3}
+      propertyPath: meleAttack
+      value: 99
+      objectReference: {fileID: 0}
+    - target: {fileID: 1151856357372434227, guid: 72657b40df415624a9296905b395b7c5,
+        type: 3}
+      propertyPath: rangedAttack
+      value: 118
+      objectReference: {fileID: 0}
+    - target: {fileID: 1151856357372434227, guid: 72657b40df415624a9296905b395b7c5,
+        type: 3}
+      propertyPath: button3
+      value: 102
+      objectReference: {fileID: 0}
+    - target: {fileID: 1151856357372434227, guid: 72657b40df415624a9296905b395b7c5,
+        type: 3}
+      propertyPath: button4
+      value: 103
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72657b40df415624a9296905b395b7c5, type: 3}
 --- !u!1 &244826186
@@ -2320,6 +2370,26 @@ PrefabInstance:
       propertyPath: healthSlider
       value: 
       objectReference: {fileID: 1560563440}
+    - target: {fileID: 1125018133, guid: 306109a736dcc544bb1f2248a38df64b, type: 3}
+      propertyPath: block
+      value: 98
+      objectReference: {fileID: 0}
+    - target: {fileID: 1125018133, guid: 306109a736dcc544bb1f2248a38df64b, type: 3}
+      propertyPath: meleAttack
+      value: 99
+      objectReference: {fileID: 0}
+    - target: {fileID: 1125018133, guid: 306109a736dcc544bb1f2248a38df64b, type: 3}
+      propertyPath: rangedAttack
+      value: 118
+      objectReference: {fileID: 0}
+    - target: {fileID: 1125018133, guid: 306109a736dcc544bb1f2248a38df64b, type: 3}
+      propertyPath: button3
+      value: 102
+      objectReference: {fileID: 0}
+    - target: {fileID: 1125018133, guid: 306109a736dcc544bb1f2248a38df64b, type: 3}
+      propertyPath: button4
+      value: 103
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 306109a736dcc544bb1f2248a38df64b, type: 3}
 --- !u!4 &393500662 stripped
@@ -6048,9 +6118,11 @@ MonoBehaviour:
   camMaxY: 0
   player1Selection: 0
   player2Selection: 1
-  p2block: 342
-  p2meleeAttack: 340
-  p2rangedAttack: 341
+  p2block: 258
+  p2meleeAttack: 256
+  p2rangedAttack: 257
+  p2Button3: 259
+  p2Button4: 260
   items:
   - {fileID: 4016039138476583919, guid: cf6482617d2261144a0097f2e4ea7046, type: 3}
   - {fileID: 3860243394793432998, guid: af4a56365b74c3647a3c0c7005cbe46f, type: 3}
@@ -6059,7 +6131,7 @@ MonoBehaviour:
   maxSpawnPos: 20
   spawnHeight: 8
   canSpawnItem: 1
-  pause: 338
+  pause: 27
   scoreP1: {fileID: 536556697}
   scoreP2: {fileID: 471543265}
   backgroundAudio: {fileID: 1915400693}
@@ -7472,6 +7544,31 @@ PrefabInstance:
       propertyPath: healthSlider
       value: 
       objectReference: {fileID: 1560563440}
+    - target: {fileID: 6212425127013585226, guid: 8b4769de5490bbc40b5d0ac525fdce05,
+        type: 3}
+      propertyPath: block
+      value: 98
+      objectReference: {fileID: 0}
+    - target: {fileID: 6212425127013585226, guid: 8b4769de5490bbc40b5d0ac525fdce05,
+        type: 3}
+      propertyPath: meleAttack
+      value: 99
+      objectReference: {fileID: 0}
+    - target: {fileID: 6212425127013585226, guid: 8b4769de5490bbc40b5d0ac525fdce05,
+        type: 3}
+      propertyPath: rangedAttack
+      value: 118
+      objectReference: {fileID: 0}
+    - target: {fileID: 6212425127013585226, guid: 8b4769de5490bbc40b5d0ac525fdce05,
+        type: 3}
+      propertyPath: button3
+      value: 102
+      objectReference: {fileID: 0}
+    - target: {fileID: 6212425127013585226, guid: 8b4769de5490bbc40b5d0ac525fdce05,
+        type: 3}
+      propertyPath: button4
+      value: 103
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b4769de5490bbc40b5d0ac525fdce05, type: 3}
 --- !u!4 &3932835732172305424 stripped
@@ -7564,6 +7661,31 @@ PrefabInstance:
       propertyPath: healthSlider
       value: 
       objectReference: {fileID: 1560563440}
+    - target: {fileID: 3881804944540247664, guid: 025e2c262cddb8a4f9712d89c89e8337,
+        type: 3}
+      propertyPath: block
+      value: 98
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881804944540247664, guid: 025e2c262cddb8a4f9712d89c89e8337,
+        type: 3}
+      propertyPath: meleAttack
+      value: 99
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881804944540247664, guid: 025e2c262cddb8a4f9712d89c89e8337,
+        type: 3}
+      propertyPath: rangedAttack
+      value: 118
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881804944540247664, guid: 025e2c262cddb8a4f9712d89c89e8337,
+        type: 3}
+      propertyPath: button3
+      value: 102
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881804944540247664, guid: 025e2c262cddb8a4f9712d89c89e8337,
+        type: 3}
+      propertyPath: button4
+      value: 103
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 025e2c262cddb8a4f9712d89c89e8337, type: 3}
 --- !u!1001 &6015590905317859433
@@ -7638,6 +7760,31 @@ PrefabInstance:
       propertyPath: healthSlider
       value: 
       objectReference: {fileID: 1560563440}
+    - target: {fileID: 6015590904311650303, guid: 874d5a7276c0d6e49a3c42cfe6208aca,
+        type: 3}
+      propertyPath: block
+      value: 98
+      objectReference: {fileID: 0}
+    - target: {fileID: 6015590904311650303, guid: 874d5a7276c0d6e49a3c42cfe6208aca,
+        type: 3}
+      propertyPath: meleAttack
+      value: 99
+      objectReference: {fileID: 0}
+    - target: {fileID: 6015590904311650303, guid: 874d5a7276c0d6e49a3c42cfe6208aca,
+        type: 3}
+      propertyPath: rangedAttack
+      value: 118
+      objectReference: {fileID: 0}
+    - target: {fileID: 6015590904311650303, guid: 874d5a7276c0d6e49a3c42cfe6208aca,
+        type: 3}
+      propertyPath: button3
+      value: 102
+      objectReference: {fileID: 0}
+    - target: {fileID: 6015590904311650303, guid: 874d5a7276c0d6e49a3c42cfe6208aca,
+        type: 3}
+      propertyPath: button4
+      value: 103
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 874d5a7276c0d6e49a3c42cfe6208aca, type: 3}
 --- !u!1001 &6120695313293712273
@@ -7711,6 +7858,26 @@ PrefabInstance:
       propertyPath: healthSlider
       value: 
       objectReference: {fileID: 1560563440}
+    - target: {fileID: 1125018133, guid: 15610e16221c4114e8ea587376671592, type: 3}
+      propertyPath: block
+      value: 98
+      objectReference: {fileID: 0}
+    - target: {fileID: 1125018133, guid: 15610e16221c4114e8ea587376671592, type: 3}
+      propertyPath: meleAttack
+      value: 99
+      objectReference: {fileID: 0}
+    - target: {fileID: 1125018133, guid: 15610e16221c4114e8ea587376671592, type: 3}
+      propertyPath: rangedAttack
+      value: 118
+      objectReference: {fileID: 0}
+    - target: {fileID: 1125018133, guid: 15610e16221c4114e8ea587376671592, type: 3}
+      propertyPath: button3
+      value: 102
+      objectReference: {fileID: 0}
+    - target: {fileID: 1125018133, guid: 15610e16221c4114e8ea587376671592, type: 3}
+      propertyPath: button4
+      value: 103
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15610e16221c4114e8ea587376671592, type: 3}
 --- !u!4 &7345249275285862528 stripped

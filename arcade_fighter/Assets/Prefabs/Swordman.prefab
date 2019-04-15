@@ -186,9 +186,9 @@ MonoBehaviour:
   hp: 100
   attack: 6
   range: 2.8
-  speed: 10
+  speed: 12.5
   crouchSpeedMultiplier: 0.5
-  jumpForce: 22
+  jumpForce: 27.5
   numberOfThisPlayer: 1
   whatIsEnnemies:
     serializedVersion: 2
@@ -200,6 +200,8 @@ MonoBehaviour:
   block: 332
   meleAttack: 330
   rangedAttack: 331
+  button3: 333
+  button4: 334
   groundCheckPoint: {fileID: 1151856357612126965}
   isGrounded: 0
   groundCheckRadius: 0.2
@@ -210,7 +212,13 @@ MonoBehaviour:
   projectile: {fileID: 5607297278488647678, guid: 9ab8dd5e9421b3d44bd79aff4b8c037c,
     type: 3}
   combos:
-    listCombos: []
+    listCombos:
+    - listKeyCode: 020000000000000001000000
+      damage: 16
+    - listKeyCode: 03000000040000000400000000000000
+      damage: 9
+    - listKeyCode: 0000000004000000020000000400000000000000
+      damage: 10
   timeBetweenAttacks: 0.5
   isDamaged: 0
   attackBoosted: 0

@@ -138,7 +138,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 6
-  m_Material: {fileID: 6200000, guid: 3626fe8e008014f6bbd19bb72937b311, type: 2}
+  m_Material: {fileID: 6200000, guid: 8be6341e1ce3f4cec9902bc34f72d20a, type: 2}
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -182,13 +182,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerName: Paladin
-  maxHp: 100
-  hp: 100
-  attack: 10
+  maxHp: 150
+  hp: 150
+  attack: 9
   range: 3
-  speed: 10
+  speed: 5
   crouchSpeedMultiplier: 0.5
-  jumpForce: 22
+  jumpForce: 11
   numberOfThisPlayer: 1
   whatIsEnnemies:
     serializedVersion: 2
@@ -200,6 +200,8 @@ MonoBehaviour:
   block: 332
   meleAttack: 330
   rangedAttack: 331
+  button3: 333
+  button4: 334
   groundCheckPoint: {fileID: 1975844819}
   isGrounded: 0
   groundCheckRadius: 0.2
@@ -210,7 +212,13 @@ MonoBehaviour:
   projectile: {fileID: 5607297278488647678, guid: 978146e93380572429d330ae172d1fff,
     type: 3}
   combos:
-    listCombos: []
+    listCombos:
+    - listKeyCode: 02000000030000000200000000000000
+      damage: 12
+    - listKeyCode: 0000000000000000040000000000000000000000
+      damage: 11
+    - listKeyCode: 0400000003000000020000000400000000000000
+      damage: 13
   timeBetweenAttacks: 0.5
   isDamaged: 0
   attackBoosted: 0

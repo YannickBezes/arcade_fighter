@@ -21,6 +21,8 @@ public class Player : MonoBehaviour {
 	public KeyCode block;
 	public KeyCode meleAttack;
 	public KeyCode rangedAttack;
+	public KeyCode button3;
+	public KeyCode button4;
 
 	private bool isBlocking = false;
 
@@ -37,6 +39,7 @@ public class Player : MonoBehaviour {
 
 	// Combos part
 	public ListCombos combos;
+	private Dictionary<listKey, KeyCode> _keycode;
 
 	private BattleCountdown countdown;
 
@@ -61,6 +64,15 @@ public class Player : MonoBehaviour {
 		else
 			hp *= DataScript.BuffPlayer2;
 		// hp = maxHp; // useful ??? rather maxhp = hp ?
+
+		// Initialize Dictionary
+		_keycode = new Dictionary<listKey, KeyCode>();
+		_keycode.Add(listKey.meleAttack, meleAttack);
+		_keycode.Add(listKey.rangeAttack, rangedAttack);
+		_keycode.Add(listKey.block, block);
+		_keycode.Add(listKey.button3, button3);
+		_keycode.Add(listKey.button4, button4);
+
 	}
 
 	// Update is called once per frame
@@ -211,14 +223,14 @@ public class Player : MonoBehaviour {
 	}
 
 	// Combos part
-	private bool CheckCombo(int comboNumber, List<KeyCode> combo) {
+	private bool CheckCombo(int comboNumber, List<listKey> combo) {
 		// If the time is greater than 0.5 ms, reset combo
 		if (Time.time > timeLastButtonPressed + timeBetweenAttacks) {
 			currentComboIndex[comboNumber] = 0;
 		}
 
 		if (currentComboIndex[comboNumber] < combo.Count) {
-			if (Input.GetKeyDown(combo[currentComboIndex[comboNumber]])) {
+			if (Input.GetKeyDown(_keycode[combo[currentComboIndex[comboNumber]]])) {
 				timeLastButtonPressed = Time.time;
 				currentComboIndex[comboNumber]++;
 			} else if (Input.anyKeyDown) {
@@ -241,7 +253,7 @@ public class Player : MonoBehaviour {
 				// Detect if the last input of the combo is an range attack or mele attack
 				float old_attack = attack; // Save attack
 				attack = combo.damage;
-				if (combo.listKeyCode[combo.listKeyCode.Count - 1] == rangedAttack) {
+				if ((int)combo.listKeyCode[combo.listKeyCode.Count - 1] == 1) {
 					RangedAttack();
 				} else {
 					MeleAttack();

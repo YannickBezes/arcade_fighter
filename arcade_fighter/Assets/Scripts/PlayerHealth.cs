@@ -16,17 +16,17 @@ public class PlayerHealth : MonoBehaviour {
 		sliderFlashImage = healthSlider.GetComponentInChildren<Image>();
 		sliderFlashColorStart = sliderFlashImage.color;
 		sliderFlashColorEnd = sliderFlashImage.color;
-		currentHealth = playerInfo.hp;
+		currentHealth = playerInfo.hp / playerInfo.maxHp * 100; // Percentage
 		healthSlider.GetComponentInChildren<Text>().text = playerInfo.playerName;
 		healthSlider.minValue = 0;
-		healthSlider.maxValue = playerInfo.maxHp;
+		healthSlider.maxValue = 100;
 	}
 
 	// Update is called once per frame
 	void Update() {
-		healthSlider.value = playerInfo.hp;
-
 		float percentage = playerInfo.hp / playerInfo.maxHp;
+		healthSlider.value = percentage * 100; // Percentage
+
 		if (percentage < 0.2f)
 			sliderFlashColorEnd = new Color(1.0f, 0.0f, 0.0f, 0.8f);
 		else if (percentage < 0.5f)

@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Coffee.UIExtensions;
 
 public class MainMenu : MonoBehaviour {
 	private GameObject[] scenes;
@@ -103,7 +104,13 @@ public class MainMenu : MonoBehaviour {
 
 	public void OnButtonHoverEnter(GameObject btn) {
 		RectTransform transform = btn.GetComponent<RectTransform>();
-		transform.localScale = transform.localScale * 0.92f;
+		transform.localScale = transform.localScale * 1.1f;
+        foreach (ParticleSystem p in btn.GetComponentsInChildren<ParticleSystem>(true))
+        {
+            p.GetComponentInChildren<TrailRenderer>().enabled = true;
+            if (!p.isPlaying)
+                p.Play();
+        }
 	}
 
     public void Blink(GameObject btn)
@@ -113,11 +120,27 @@ public class MainMenu : MonoBehaviour {
         StartCoroutine(coroutine);
     }
 
+    public void StartShiny(GameObject avatar)
+    {
+        avatar.GetComponent<UIShiny>().Play();
+    }
+
+    public void StopShiny(GameObject avatar)
+    {
+        avatar.GetComponent<UIShiny>().Stop();
+    }
+
 	public void OnButtonHoverExit(GameObject btn) {
 		btn.GetComponent<RectTransform>().transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
         StopAllCoroutines();
         Image img = btn.GetComponent<Image>();
         img.color = new Color(img.color.r, img.color.g, img.color.b, 1);
+        foreach (ParticleSystem p in btn.GetComponentsInChildren<ParticleSystem>(true))
+        {
+            p.GetComponentInChildren<TrailRenderer>().enabled = false;
+            if (p.isPlaying)
+                p.Stop();
+        }
     }
 
 	public void OnPreMenuEnter(GameObject bg) {

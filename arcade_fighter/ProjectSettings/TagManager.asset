@@ -21,6 +21,7 @@ TagManager:
   - BackgroundLoadingScriptTag
   - MusicSlider
   - SoundSlider
+  - MenuBackground
   layers:
   - Default
   - TransparentFX

@@ -103,12 +103,22 @@ public class MainMenu : MonoBehaviour {
 
 	public void OnButtonHoverEnter(GameObject btn) {
 		RectTransform transform = btn.GetComponent<RectTransform>();
-		transform.localScale = transform.localScale * 0.95f;
+		transform.localScale = transform.localScale * 0.92f;
 	}
+
+    public void Blink(GameObject btn)
+    {
+        // Blink
+        IEnumerator coroutine = Blink(btn.GetComponent<Image>());
+        StartCoroutine(coroutine);
+    }
 
 	public void OnButtonHoverExit(GameObject btn) {
 		btn.GetComponent<RectTransform>().transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-	}
+        StopAllCoroutines();
+        Image img = btn.GetComponent<Image>();
+        img.color = new Color(img.color.r, img.color.g, img.color.b, 1);
+    }
 
 	public void OnPreMenuEnter(GameObject bg) {
 		bg.GetComponent<SpriteRenderer>().color = new Color(0.2f, 0.25f, 0.3f, 1.0f);
@@ -214,6 +224,28 @@ public class MainMenu : MonoBehaviour {
 		musicSlider.value = prevMusicVolume;
 		soundSlider.value = prevSoundVolume;
 	}
+
+    IEnumerator Blink(Image img)
+    {
+        while (true)
+        {
+            switch (img.color.a.ToString())
+            {
+                case "0":
+                    img.color = new Color(img.color.r, img.color.g, img.color.b, 1);
+                    yield return new WaitForSeconds(0.5f);
+                    break;
+
+                case "1":
+                    img.color = new Color(img.color.r, img.color.g, img.color.b, 0);
+                    yield return new WaitForSeconds(0.5f);
+                    break;
+
+                default:
+                    break;
+            }
+        }
+    }
 
 	public void Update() {
 

@@ -62,6 +62,8 @@ public class DecorScript : MonoBehaviour {
 		}
 
 		Initialize();
+        player1.GetComponent<Player>().InitializeDictionary();
+        player2.GetComponent<Player>().InitializeDictionary();
 
 		// Manage countdown
 		countdown = GameObject.FindGameObjectWithTag("DecorTag").GetComponent<BattleCountdown>();

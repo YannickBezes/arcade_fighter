@@ -26,7 +26,6 @@ public class DecorItemScript : MonoBehaviour {
 		Instantiate(explosionEffect, transform.position, transform.rotation);
 		GameObject player1 = GameObject.Find("Decor").GetComponent<DecorScript>().GetPlayer1();
 		GameObject player2 = GameObject.Find("Decor").GetComponent<DecorScript>().GetPlayer2();
-		Debug.Log(hitbox.Distance(player1.GetComponent<BoxCollider2D>()).distance);
 		if (hitbox.Distance(player1.GetComponent<BoxCollider2D>()).distance < explosionRadius) {
 			player1.GetComponent<Player>().TakeDamage(explosionDamage);
 		}

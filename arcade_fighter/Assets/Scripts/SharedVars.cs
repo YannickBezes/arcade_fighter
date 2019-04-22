@@ -14,21 +14,17 @@ public class SharedVars : MonoBehaviour {
 
 	public void SetMusicVolume(float val) {
 		musicVolume = val;
-		Debug.Log("Music vol: " + musicVolume);
 	}
 
 	public void SetEffectsVolume(float val) {
 		effectsVolume = val;
-		Debug.Log("Effects vol: " + effectsVolume);
 	}
 
 	public float GetMusicVolume() {
-		Debug.Log("Get Music vol: " + musicVolume);
 		return musicVolume;
 	}
 
 	public float GetEffectsVolme() {
-		Debug.Log("Get Effects vol: " + effectsVolume);
 		return effectsVolume;
 	}
 

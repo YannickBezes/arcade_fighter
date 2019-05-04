@@ -27,8 +27,7 @@ public class MainMenu : MonoBehaviour {
 	}
 
 	public void StartGame() {
-
-		vars = this.GetComponent<SharedVars>();
+		vars = GetComponent<SharedVars>();
 
 		vars.SetSceneBackgroundIdx(current_scene);
 		vars.SetAvatarIdxP1(current_avatar_p1);
@@ -37,7 +36,7 @@ public class MainMenu : MonoBehaviour {
 		DataScript.P1selection = current_avatar_p1;
 		DataScript.P2selection = current_avatar_p2;
 
-
+		// Set the score to 0 and the buff to 0
 		DataScript.ScorePlayer1 = 0;
 		DataScript.ScorePlayer2 = 0;
 		DataScript.NumberOfGamesToWin = 3;
@@ -183,7 +182,7 @@ public class MainMenu : MonoBehaviour {
 		avatars = Resources.LoadAll<Sprite>("Characters");
 
 		current_avatar_p1 = 0;
-		current_avatar_p2 = 0;
+		current_avatar_p2 = 1;
 
 		avatar_p1 = GameObject.FindGameObjectWithTag("TagAvatarP1");
 		avatar_p2 = GameObject.FindGameObjectWithTag("TagAvatarP2");
@@ -205,6 +204,11 @@ public class MainMenu : MonoBehaviour {
 	}
 
 	public void Update() {
-
+		GameObject preGameMenu = GameObject.Find("PreGameMenu");;
+		if(preGameMenu && preGameMenu.activeSelf) {
+			Button buttonStart = GameObject.Find("ButtonStart").GetComponent<Button>();
+			// Check if p1 and p2 are the same
+			buttonStart.interactable = current_avatar_p1 == current_avatar_p2 ? false : true;
+		}
 	}
 }

@@ -45,8 +45,10 @@ public class Player : MonoBehaviour {
 	private BattleCountdown countdown;
 
 	private int[] currentComboIndex = new int[6];
-	public float timeBetweenAttacks = 0.5f;
 	private float timeLastButtonPressed;
+
+	public float timeBetweenAttacks = 0.3f;
+	private float nextAttack = 0;
 
 	// For query of PlayerHealth
 	public bool isDamaged = false;
@@ -72,9 +74,7 @@ public class Player : MonoBehaviour {
 		}
 			
 		// hp = maxHp; // useful ??? rather maxhp = hp ?
-
-		// Initialize Dictionary
-		
+	
 	}
 
     public void InitializeDictionary()
@@ -221,7 +221,8 @@ public class Player : MonoBehaviour {
 	}
 
 	public void RangedAttack() {
-		if (Input.GetKeyDown(rangedAttack)) {
+		if (Input.GetKeyDown(rangedAttack) && Time.time > nextAttack) {
+			nextAttack = Time.time + timeBetweenAttacks;
 			//Ranged attack here
 			GameObject p;
 			if (!faceRight) {

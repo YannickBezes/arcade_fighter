@@ -307,6 +307,11 @@ PrefabInstance:
       propertyPath: button4
       value: 103
       objectReference: {fileID: 0}
+    - target: {fileID: 2494816000783712024, guid: c18a5aa7ffcdffd45b209b62daba93cc,
+        type: 3}
+      propertyPath: timeBetweenAttacks
+      value: 0.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c18a5aa7ffcdffd45b209b62daba93cc, type: 3}
 --- !u!4 &60329436 stripped
@@ -1588,6 +1593,11 @@ PrefabInstance:
       propertyPath: combos.listCombos.Array.data[2].listKeyCode.Array.data[2]
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1151856357372434227, guid: 72657b40df415624a9296905b395b7c5,
+        type: 3}
+      propertyPath: timeBetweenAttacks
+      value: 0.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72657b40df415624a9296905b395b7c5, type: 3}
 --- !u!1 &244826186
@@ -2411,6 +2421,10 @@ PrefabInstance:
     - target: {fileID: 1125018133, guid: 306109a736dcc544bb1f2248a38df64b, type: 3}
       propertyPath: combos.listCombos.Array.data[2].listKeyCode.Array.data[2]
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1125018133, guid: 306109a736dcc544bb1f2248a38df64b, type: 3}
+      propertyPath: timeBetweenAttacks
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 4119673509739915127, guid: 306109a736dcc544bb1f2248a38df64b,
         type: 3}
@@ -8166,6 +8180,11 @@ PrefabInstance:
       propertyPath: button4
       value: 103
       objectReference: {fileID: 0}
+    - target: {fileID: 6212425127013585226, guid: 8b4769de5490bbc40b5d0ac525fdce05,
+        type: 3}
+      propertyPath: timeBetweenAttacks
+      value: 0.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b4769de5490bbc40b5d0ac525fdce05, type: 3}
 --- !u!4 &3932835732172305424 stripped
@@ -8293,6 +8312,11 @@ PrefabInstance:
       propertyPath: combos.listCombos.Array.data[2].listKeyCode.Array.data[0]
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 3881804944540247664, guid: 025e2c262cddb8a4f9712d89c89e8337,
+        type: 3}
+      propertyPath: timeBetweenAttacks
+      value: 0.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 025e2c262cddb8a4f9712d89c89e8337, type: 3}
 --- !u!1001 &6015590905317859433
@@ -8397,6 +8421,11 @@ PrefabInstance:
       propertyPath: combos.listCombos.Array.data[2].listKeyCode.Array.data[3]
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 6015590904311650303, guid: 874d5a7276c0d6e49a3c42cfe6208aca,
+        type: 3}
+      propertyPath: timeBetweenAttacks
+      value: 0.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 874d5a7276c0d6e49a3c42cfe6208aca, type: 3}
 --- !u!1001 &6120695313293712273
@@ -8489,6 +8518,10 @@ PrefabInstance:
     - target: {fileID: 1125018133, guid: 15610e16221c4114e8ea587376671592, type: 3}
       propertyPath: button4
       value: 103
+      objectReference: {fileID: 0}
+    - target: {fileID: 1125018133, guid: 15610e16221c4114e8ea587376671592, type: 3}
+      propertyPath: timeBetweenAttacks
+      value: 0.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15610e16221c4114e8ea587376671592, type: 3}

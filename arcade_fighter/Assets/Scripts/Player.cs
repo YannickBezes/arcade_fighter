@@ -36,7 +36,7 @@ public class Player : MonoBehaviour {
 	public bool faceRight;
 
 	public GameObject projectile;
-    public GameObject comboImg;
+	public GameObject comboImg;
 
 	// Combos part
 	public ListCombos combos;
@@ -62,8 +62,8 @@ public class Player : MonoBehaviour {
 		groundCheckPoint = transform.Find("GroundCheck");
 		rigidBody = GetComponent<Rigidbody2D>();
 		animator = GetComponent<Animator>();
-        comboImg = transform.GetChild(2).gameObject;
-        comboImg.SetActive(false);
+		comboImg = transform.GetChild(2).gameObject;
+		comboImg.SetActive(false);
 		if (numberOfThisPlayer == 1)
 			hp *= DataScript.BuffPlayer1;
 		else {
@@ -72,23 +72,22 @@ public class Player : MonoBehaviour {
 			theScale.x *= -1;
 			comboImg.transform.localScale = theScale;
 		}
-			
+
 		// hp = maxHp; // useful ??? rather maxhp = hp ?
-	
+
 	}
 
-    public void InitializeDictionary()
-    {
+	public void InitializeDictionary() {
 		_keycode = new Dictionary<listKey, KeyCode>();
 		_keycode.Add(listKey.meleAttack, meleAttack);
-        _keycode.Add(listKey.rangeAttack, rangedAttack);
-        _keycode.Add(listKey.block, block);
-        _keycode.Add(listKey.button3, button3);
-        _keycode.Add(listKey.button4, button4);
-    }
+		_keycode.Add(listKey.rangeAttack, rangedAttack);
+		_keycode.Add(listKey.block, block);
+		_keycode.Add(listKey.button3, button3);
+		_keycode.Add(listKey.button4, button4);
+	}
 
-    // Update is called once per frame
-    void Update() {
+	// Update is called once per frame
+	void Update() {
 		if (countdown.isGameReady) {
 			isGrounded = false;
 			Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheckPoint.position, groundCheckRadius, whatIsGround);
@@ -167,12 +166,12 @@ public class Player : MonoBehaviour {
 		theScale.x *= -1;
 		transform.localScale = theScale;
 
-		if(comboImg != null) {
+		if (comboImg != null) {
 			theScale = comboImg.transform.localScale;
 			theScale.x *= -1;
 			comboImg.transform.localScale = theScale;
 		}
-        
+
 	}
 
 	public void TakeDamage(float damage) {
@@ -180,8 +179,13 @@ public class Player : MonoBehaviour {
 		if (!isBlocking) {
 			hp -= damage;
 			StartCoroutine(SpriteFlash());
-		} 
+			HitSound();
+		}
 
+	}
+
+	private void HitSound() {
+		GameObject.Find("HitAudio").GetComponent<AudioSource>().Play();
 	}
 
 	IEnumerator SpriteFlash() {
@@ -266,8 +270,8 @@ public class Player : MonoBehaviour {
 		for (int i = 0; i < combos.listCombos.Count; i++) {
 			Combo combo = combos.listCombos[i];
 			if (CheckCombo(i, combo.listKeyCode)) {
-                // Detect if the last input of the combo is an range attack or mele attack
-                StartCoroutine(ComboFlash());
+				// Detect if the last input of the combo is an range attack or mele attack
+				StartCoroutine(ComboFlash());
 				float old_attack = attack; // Save attack
 				attack = combo.damage;
 				if ((int)combo.listKeyCode[combo.listKeyCode.Count - 1] == 1) {
@@ -282,14 +286,13 @@ public class Player : MonoBehaviour {
 		return false; // This is not a combo
 	}
 
-    IEnumerator ComboFlash()
-    {
-        comboImg.SetActive(true);
-        yield return new WaitForSeconds(0.5f);
-        comboImg.SetActive(false);
-    }
+	IEnumerator ComboFlash() {
+		comboImg.SetActive(true);
+		yield return new WaitForSeconds(0.5f);
+		comboImg.SetActive(false);
+	}
 
-    public void ChangeStats(float hpModifier, float attackModifier, float rangeModifier, float speedModifier) {
+	public void ChangeStats(float hpModifier, float attackModifier, float rangeModifier, float speedModifier) {
 		// HP can't be superior at 100
 		if (hp < 100)
 			hp = (hp + hpModifier) > 100 ? 100 : hp + hpModifier;

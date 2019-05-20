@@ -14,14 +14,12 @@ public class ItemScript : MonoBehaviour {
 		if (Time.time > timeItemTaken + duration && gathered == true) {
 			player.GetComponent<Player>().ChangeStats(0, -attackModifier, -rangeModifier, -speedModifier);
 			player.GetComponent<Player>().attackBoosted = false;
-			Debug.Log("L'effet de l'item se dissipe....");
 			Destroy(gameObject);
 		}
 	}
 
 	private void OnTriggerEnter2D(Collider2D other) {
 		if (other.tag == "Player") {
-			Debug.Log("Le joueur " + other.GetComponent<Player>().numberOfThisPlayer + " vient de ramasser un item : " + Time.time);
 			timeItemTaken = Time.time;
 			player = other;
 			gathered = true;

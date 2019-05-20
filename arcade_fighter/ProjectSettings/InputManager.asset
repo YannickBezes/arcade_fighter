@@ -9,32 +9,32 @@ InputManager:
     m_Name: Horizontal
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: left
-    positiveButton: right
-    altNegativeButton: a
+    negativeButton: q
+    positiveButton: d
+    altNegativeButton: q
     altPositiveButton: d
     gravity: 6
     dead: 0.19
     sensitivity: 1
     snap: 0
     invert: 0
-    type: 2
+    type: 0
     axis: 0
     joyNum: 1
   - serializedVersion: 3
     m_Name: Vertical
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: 
-    altNegativeButton: 
-    altPositiveButton: 
+    negativeButton: s
+    positiveButton: z
+    altNegativeButton: s
+    altPositiveButton: z
     gravity: 6
     dead: 0.19
     sensitivity: 1
     snap: 0
-    invert: 1
-    type: 2
+    invert: 0
+    type: 0
     axis: 1
     joyNum: 1
   - serializedVersion: 3
@@ -153,34 +153,34 @@ InputManager:
     m_Name: HorizontalP2
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: 
-    altNegativeButton: 
-    altPositiveButton: 
-    gravity: 3
+    negativeButton: left
+    positiveButton: right
+    altNegativeButton: left
+    altPositiveButton: right
+    gravity: 6
     dead: 0.19
     sensitivity: 1
     snap: 0
     invert: 0
-    type: 2
-    axis: 3
-    joyNum: 1
+    type: 0
+    axis: 0
+    joyNum: 2
   - serializedVersion: 3
     m_Name: VerticalP2
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: 
-    altNegativeButton: 
-    altPositiveButton: 
+    negativeButton: up
+    positiveButton: down
+    altNegativeButton: up
+    altPositiveButton: down
     gravity: 6
     dead: 0.19
     sensitivity: 1
     snap: 0
     invert: 1
-    type: 2
-    axis: 4
-    joyNum: 1
+    type: 0
+    axis: 1
+    joyNum: 2
   - serializedVersion: 3
     m_Name: Fire1
     descriptiveName: 
@@ -268,15 +268,15 @@ InputManager:
     negativeButton: 
     positiveButton: return
     altNegativeButton: 
-    altPositiveButton: joystick button 10
+    altPositiveButton: joystick button 0
     gravity: 1000
     dead: 0.001
     sensitivity: 1000
     snap: 0
     invert: 0
     type: 0
-    axis: 3
-    joyNum: 1
+    axis: 0
+    joyNum: 2
   - serializedVersion: 3
     m_Name: Cancel
     descriptiveName: 

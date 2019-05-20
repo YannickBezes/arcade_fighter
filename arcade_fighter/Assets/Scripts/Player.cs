@@ -21,6 +21,8 @@ public class Player : MonoBehaviour {
 	public KeyCode block;
 	public KeyCode meleAttack;
 	public KeyCode rangedAttack;
+	public KeyCode button3;
+	public KeyCode button4;
 
 	private bool isBlocking = false;
 
@@ -34,15 +36,19 @@ public class Player : MonoBehaviour {
 	public bool faceRight;
 
 	public GameObject projectile;
+	public GameObject comboImg;
 
 	// Combos part
 	public ListCombos combos;
+	private Dictionary<listKey, KeyCode> _keycode;
 
 	private BattleCountdown countdown;
 
 	private int[] currentComboIndex = new int[6];
-	public float timeBetweenAttacks = 0.5f;
 	private float timeLastButtonPressed;
+
+	public float timeBetweenAttacks = 0.3f;
+	private float nextAttack = 0;
 
 	// For query of PlayerHealth
 	public bool isDamaged = false;
@@ -56,11 +62,28 @@ public class Player : MonoBehaviour {
 		groundCheckPoint = transform.Find("GroundCheck");
 		rigidBody = GetComponent<Rigidbody2D>();
 		animator = GetComponent<Animator>();
+		comboImg = transform.GetChild(2).gameObject;
+		comboImg.SetActive(false);
 		if (numberOfThisPlayer == 1)
 			hp *= DataScript.BuffPlayer1;
-		else
+		else {
 			hp *= DataScript.BuffPlayer2;
+			Vector3 theScale = comboImg.transform.localScale;
+			theScale.x *= -1;
+			comboImg.transform.localScale = theScale;
+		}
+
 		// hp = maxHp; // useful ??? rather maxhp = hp ?
+
+	}
+
+	public void InitializeDictionary() {
+		_keycode = new Dictionary<listKey, KeyCode>();
+		_keycode.Add(listKey.meleAttack, meleAttack);
+		_keycode.Add(listKey.rangeAttack, rangedAttack);
+		_keycode.Add(listKey.block, block);
+		_keycode.Add(listKey.button3, button3);
+		_keycode.Add(listKey.button4, button4);
 	}
 
 	// Update is called once per frame
@@ -142,19 +165,27 @@ public class Player : MonoBehaviour {
 		Vector3 theScale = transform.localScale;
 		theScale.x *= -1;
 		transform.localScale = theScale;
+
+		if (comboImg != null) {
+			theScale = comboImg.transform.localScale;
+			theScale.x *= -1;
+			comboImg.transform.localScale = theScale;
+		}
+
 	}
 
 	public void TakeDamage(float damage) {
 		// If the player doesn't counter the attack he take damage
 		if (!isBlocking) {
 			hp -= damage;
-			Debug.Log("Damage Taken !" + damage);
-		} else {
-			hp -= damage * 0.25f;
-			Debug.Log("Damage Taken !" + damage * 0.25f);
+			StartCoroutine(SpriteFlash());
+			HitSound();
 		}
 
-		StartCoroutine(SpriteFlash());
+	}
+
+	private void HitSound() {
+		GameObject.Find("HitAudio").GetComponent<AudioSource>().Play();
 	}
 
 	IEnumerator SpriteFlash() {
@@ -194,7 +225,8 @@ public class Player : MonoBehaviour {
 	}
 
 	public void RangedAttack() {
-		if (Input.GetKeyDown(rangedAttack)) {
+		if (Input.GetKeyDown(rangedAttack) && Time.time > nextAttack) {
+			nextAttack = Time.time + timeBetweenAttacks;
 			//Ranged attack here
 			GameObject p;
 			if (!faceRight) {
@@ -211,14 +243,14 @@ public class Player : MonoBehaviour {
 	}
 
 	// Combos part
-	private bool CheckCombo(int comboNumber, List<KeyCode> combo) {
+	private bool CheckCombo(int comboNumber, List<listKey> combo) {
 		// If the time is greater than 0.5 ms, reset combo
 		if (Time.time > timeLastButtonPressed + timeBetweenAttacks) {
 			currentComboIndex[comboNumber] = 0;
 		}
 
 		if (currentComboIndex[comboNumber] < combo.Count) {
-			if (Input.GetKeyDown(combo[currentComboIndex[comboNumber]])) {
+			if (Input.GetKeyDown(_keycode[combo[currentComboIndex[comboNumber]]])) {
 				timeLastButtonPressed = Time.time;
 				currentComboIndex[comboNumber]++;
 			} else if (Input.anyKeyDown) {
@@ -239,19 +271,25 @@ public class Player : MonoBehaviour {
 			Combo combo = combos.listCombos[i];
 			if (CheckCombo(i, combo.listKeyCode)) {
 				// Detect if the last input of the combo is an range attack or mele attack
+				StartCoroutine(ComboFlash());
 				float old_attack = attack; // Save attack
 				attack = combo.damage;
-				if (combo.listKeyCode[combo.listKeyCode.Count - 1] == rangedAttack) {
+				if ((int)combo.listKeyCode[combo.listKeyCode.Count - 1] == 1) {
 					RangedAttack();
 				} else {
 					MeleAttack();
 				}
 				attack = old_attack;
-				Debug.Log("Combo " + i);
 				return true; // This is a combo
 			}
 		}
 		return false; // This is not a combo
+	}
+
+	IEnumerator ComboFlash() {
+		comboImg.SetActive(true);
+		yield return new WaitForSeconds(0.5f);
+		comboImg.SetActive(false);
 	}
 
 	public void ChangeStats(float hpModifier, float attackModifier, float rangeModifier, float speedModifier) {

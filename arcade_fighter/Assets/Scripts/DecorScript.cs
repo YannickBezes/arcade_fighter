@@ -11,7 +11,7 @@ public class DecorScript : MonoBehaviour {
 	public int player1Selection, player2Selection;
 
 	// Input for player 2
-	public KeyCode p2block, p2meleeAttack, p2rangedAttack;
+	public KeyCode p2block, p2meleeAttack, p2rangedAttack, p2Button3, p2Button4;
 
 	// Items stuff
 	public GameObject[] items;
@@ -62,6 +62,8 @@ public class DecorScript : MonoBehaviour {
 		}
 
 		Initialize();
+        player1.GetComponent<Player>().InitializeDictionary();
+        player2.GetComponent<Player>().InitializeDictionary();
 
 		// Manage countdown
 		countdown = GameObject.FindGameObjectWithTag("DecorTag").GetComponent<BattleCountdown>();
@@ -192,6 +194,8 @@ public class DecorScript : MonoBehaviour {
 		player2.GetComponent<Player>().block = p2block;
 		player2.GetComponent<Player>().meleAttack = p2meleeAttack;
 		player2.GetComponent<Player>().rangedAttack = p2rangedAttack;
+		player2.GetComponent<Player>().button3 = p2Button3;
+		player2.GetComponent<Player>().button4 = p2Button4;
 
 		// Set HealthSlider
 		player2.GetComponent<PlayerHealth>().healthSlider = GameObject.Find("HealthSlider2").GetComponent<Slider>();

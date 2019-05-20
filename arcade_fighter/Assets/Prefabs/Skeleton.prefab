@@ -182,11 +182,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerName: Skeleton
-  maxHp: 100
-  hp: 100
+  maxHp: 150
+  hp: 150
   attack: 6
   range: 2.3
-  speed: 10
+  speed: 7.5
   crouchSpeedMultiplier: 0.5
   jumpForce: 22
   numberOfThisPlayer: 1
@@ -200,6 +200,8 @@ MonoBehaviour:
   block: 332
   meleAttack: 330
   rangedAttack: 331
+  button3: 333
+  button4: 334
   groundCheckPoint: {fileID: 6212425126312510604}
   isGrounded: 0
   groundCheckRadius: 0.2
@@ -210,7 +212,13 @@ MonoBehaviour:
   projectile: {fileID: 5607297278488647678, guid: 978146e93380572429d330ae172d1fff,
     type: 3}
   combos:
-    listCombos: []
+    listCombos:
+    - listKeyCode: 000000000300000000000000
+      damage: 8
+    - listKeyCode: 00000000030000000300000000000000
+      damage: 10
+    - listKeyCode: 0000000003000000000000000300000000000000
+      damage: 12
   timeBetweenAttacks: 0.5
   isDamaged: 0
   attackBoosted: 0

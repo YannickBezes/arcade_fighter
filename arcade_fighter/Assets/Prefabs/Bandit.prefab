@@ -182,9 +182,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerName: Bandit
-  maxHp: 100
-  hp: 100
-  attack: 6
+  maxHp: 75
+  hp: 75
+  attack: 10
   range: 2
   speed: 10
   crouchSpeedMultiplier: 0.5
@@ -200,6 +200,8 @@ MonoBehaviour:
   block: 332
   meleAttack: 330
   rangedAttack: 331
+  button3: 333
+  button4: 334
   groundCheckPoint: {fileID: 6015590903469277753}
   isGrounded: 0
   groundCheckRadius: 0.2
@@ -210,7 +212,13 @@ MonoBehaviour:
   projectile: {fileID: 5607297278488647678, guid: 978146e93380572429d330ae172d1fff,
     type: 3}
   combos:
-    listCombos: []
+    listCombos:
+    - listKeyCode: 010000000300000000000000
+      damage: 11
+    - listKeyCode: 01000000030000000300000000000000
+      damage: 12
+    - listKeyCode: 0100000000000000040000000200000000000000
+      damage: 15
   timeBetweenAttacks: 0.5
   isDamaged: 0
   attackBoosted: 0

@@ -42,8 +42,6 @@ public class BackgroundLoading : MonoBehaviour {
 		bg.transform.localScale = sceneScaleFactors[idx];
 
 		GameObject.FindGameObjectWithTag("Ground").transform.position = groundPositions[idx];
-		Debug.Log("Characters/c" + vars.GetAvatarIdxP1());
-		Debug.Log("Characters/c" + vars.GetAvatarIdxP2());
 
 		Sprite[] avatars = Resources.LoadAll<Sprite>("Characters"); // Get avatarts
 

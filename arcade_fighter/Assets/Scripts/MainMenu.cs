@@ -94,14 +94,15 @@ public class MainMenu : MonoBehaviour {
 		}
 
 		Button next_button = GameObject.Find(btn_to_find).GetComponent<Button>();
-		next_button.Select();
+        next_button.Select();
 
-		OnButtonHoverExit(btn); // Clear effect
+        OnButtonHoverExit(btn); // Clear effect
 	}
 
 	public void OnButtonHoverEnter(GameObject btn) {
 		RectTransform transform = btn.GetComponent<RectTransform>();
-		transform.localScale = transform.localScale * 1.1f;
+        transform.localScale = new Vector3(1.1f, 1.1f, 1.1f);
+
         foreach (ParticleSystem p in btn.GetComponentsInChildren<ParticleSystem>(true))
         {
             p.GetComponentInChildren<TrailRenderer>().enabled = true;
@@ -109,6 +110,20 @@ public class MainMenu : MonoBehaviour {
                 p.Play();
         }
 	}
+
+    public void OnButtonHoverExit(GameObject btn)
+    {
+        btn.GetComponent<RectTransform>().transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+        StopAllCoroutines();
+        Image img = btn.GetComponent<Image>();
+        img.color = new Color(img.color.r, img.color.g, img.color.b, 1);
+        foreach (ParticleSystem p in btn.GetComponentsInChildren<ParticleSystem>(true))
+        {
+            p.GetComponentInChildren<TrailRenderer>().enabled = false;
+            if (p.isPlaying)
+                p.Stop();
+        }
+    }
 
     public void Blink(GameObject btn)
     {
@@ -125,19 +140,6 @@ public class MainMenu : MonoBehaviour {
     public void StopShiny(GameObject avatar)
     {
         avatar.GetComponent<UIShiny>().Stop();
-    }
-
-	public void OnButtonHoverExit(GameObject btn) {
-		btn.GetComponent<RectTransform>().transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-        StopAllCoroutines();
-        Image img = btn.GetComponent<Image>();
-        img.color = new Color(img.color.r, img.color.g, img.color.b, 1);
-        foreach (ParticleSystem p in btn.GetComponentsInChildren<ParticleSystem>(true))
-        {
-            p.GetComponentInChildren<TrailRenderer>().enabled = false;
-            if (p.isPlaying)
-                p.Stop();
-        }
     }
 
 	public void OnPreMenuEnter(GameObject bg) {

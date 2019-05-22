@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Coffee.UIExtensions;
 
 public class MainMenu : MonoBehaviour {
 	private GameObject[] scenes;
@@ -93,19 +94,53 @@ public class MainMenu : MonoBehaviour {
 		}
 
 		Button next_button = GameObject.Find(btn_to_find).GetComponent<Button>();
-		next_button.Select();
+        next_button.Select();
 
-		OnButtonHoverExit(btn); // Clear effect
+        OnButtonHoverExit(btn); // Clear effect
 	}
 
 	public void OnButtonHoverEnter(GameObject btn) {
 		RectTransform transform = btn.GetComponent<RectTransform>();
-		transform.localScale = transform.localScale * 0.95f;
+        transform.localScale = new Vector3(1.1f, 1.1f, 1.1f);
+
+        foreach (ParticleSystem p in btn.GetComponentsInChildren<ParticleSystem>(true))
+        {
+            p.GetComponentInChildren<TrailRenderer>().enabled = true;
+            if (!p.isPlaying)
+                p.Play();
+        }
 	}
 
-	public void OnButtonHoverExit(GameObject btn) {
-		btn.GetComponent<RectTransform>().transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-	}
+    public void OnButtonHoverExit(GameObject btn)
+    {
+        btn.GetComponent<RectTransform>().transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+        StopAllCoroutines();
+        Image img = btn.GetComponent<Image>();
+        img.color = new Color(img.color.r, img.color.g, img.color.b, 1);
+        foreach (ParticleSystem p in btn.GetComponentsInChildren<ParticleSystem>(true))
+        {
+            p.GetComponentInChildren<TrailRenderer>().enabled = false;
+            if (p.isPlaying)
+                p.Stop();
+        }
+    }
+
+    public void Blink(GameObject btn)
+    {
+        // Blink
+        IEnumerator coroutine = Blink(btn.GetComponent<Image>());
+        StartCoroutine(coroutine);
+    }
+
+    public void StartShiny(GameObject avatar)
+    {
+        avatar.GetComponent<UIShiny>().Play();
+    }
+
+    public void StopShiny(GameObject avatar)
+    {
+        avatar.GetComponent<UIShiny>().Stop();
+    }
 
 	public void OnPreMenuEnter(GameObject bg) {
 		bg.GetComponent<SpriteRenderer>().color = new Color(0.2f, 0.25f, 0.3f, 1.0f);
@@ -202,6 +237,28 @@ public class MainMenu : MonoBehaviour {
 		musicSlider.value = prevMusicVolume;
 		soundSlider.value = prevSoundVolume;
 	}
+
+    IEnumerator Blink(Image img)
+    {
+        while (true)
+        {
+            switch (img.color.a.ToString())
+            {
+                case "0":
+                    img.color = new Color(img.color.r, img.color.g, img.color.b, 1);
+                    yield return new WaitForSeconds(0.5f);
+                    break;
+
+                case "1":
+                    img.color = new Color(img.color.r, img.color.g, img.color.b, 0);
+                    yield return new WaitForSeconds(0.5f);
+                    break;
+
+                default:
+                    break;
+            }
+        }
+    }
 
 	public void Update() {
 		GameObject preGameMenu = GameObject.Find("PreGameMenu");;

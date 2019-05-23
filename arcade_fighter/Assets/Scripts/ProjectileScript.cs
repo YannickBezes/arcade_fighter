@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class ProjectileScript : MonoBehaviour {
 	public float projectileSpeed;
 	public float damage;
+    public GameObject effectPrefab;
 
 	private Rigidbody2D rb;
 
@@ -17,7 +19,7 @@ public class ProjectileScript : MonoBehaviour {
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision) {
-		if (collision.tag == "Player") {
+        if (collision.tag == "Player") {
 			Player player = collision.GetComponent<Player>();
 			if (player != null)
 				player.TakeDamage(damage);
@@ -25,6 +27,16 @@ public class ProjectileScript : MonoBehaviour {
 		if (collision.tag == "DecorItem") {
 			collision.GetComponent<DecorItemScript>().TakeDamage(damage);
 		}
-		Destroy(gameObject);
+
+        Vector3 pos = gameObject.transform.position;
+
+        Destroy(gameObject);
+
+        if (effectPrefab)
+        {
+            
+            GameObject clone = Instantiate(effectPrefab, pos, Quaternion.identity);
+            Destroy(clone, 1);
+        }
 	}
 }

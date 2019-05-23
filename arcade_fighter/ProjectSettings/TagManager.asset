@@ -22,6 +22,7 @@ TagManager:
   - MusicSlider
   - SoundSlider
   - MenuBackground
+  - FireTrail
   layers:
   - Default
   - TransparentFX

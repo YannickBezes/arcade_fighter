@@ -99,17 +99,26 @@ public class MainMenu : MonoBehaviour {
         OnButtonHoverExit(btn); // Clear effect
 	}
 
-	public void OnButtonHoverEnter(GameObject btn) {
-		RectTransform transform = btn.GetComponent<RectTransform>();
+    public void OnButtonHoverEnter(GameObject btn)
+    {
+        RectTransform transform = btn.GetComponent<RectTransform>();
         transform.localScale = new Vector3(1.1f, 1.1f, 1.1f);
 
-        foreach (ParticleSystem p in btn.GetComponentsInChildren<ParticleSystem>(true))
+        ParticleSystem[] particles = btn.GetComponentsInChildren<ParticleSystem>(true);
+
+        if (particles.Length > 0)
         {
-            p.GetComponentInChildren<TrailRenderer>().enabled = true;
-            if (!p.isPlaying)
-                p.Play();
+            foreach (ParticleSystem p in particles)
+            {
+                TrailRenderer tr = p.GetComponentInChildren<TrailRenderer>();
+                if (tr) {
+                    tr.enabled = true;
+                    if (!p.isPlaying)
+                        p.Play();
+                }
+            }
         }
-	}
+    }
 
     public void OnButtonHoverExit(GameObject btn)
     {
@@ -117,11 +126,22 @@ public class MainMenu : MonoBehaviour {
         StopAllCoroutines();
         Image img = btn.GetComponent<Image>();
         img.color = new Color(img.color.r, img.color.g, img.color.b, 1);
-        foreach (ParticleSystem p in btn.GetComponentsInChildren<ParticleSystem>(true))
+
+        ParticleSystem[] particles = btn.GetComponentsInChildren<ParticleSystem>(true);
+
+        if (particles.Length > 0)
         {
-            p.GetComponentInChildren<TrailRenderer>().enabled = false;
-            if (p.isPlaying)
-                p.Stop();
+
+            foreach (ParticleSystem p in particles)
+            {
+                TrailRenderer tr = p.GetComponentInChildren<TrailRenderer>();
+                if (tr)
+                {
+                    tr.enabled = false;
+                    if (p.isPlaying)
+                        p.Stop();
+                }
+            }
         }
     }
 

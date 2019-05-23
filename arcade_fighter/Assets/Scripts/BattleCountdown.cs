@@ -5,6 +5,8 @@ using UnityEngine.UI;
 public class BattleCountdown : MonoBehaviour {
 	public Text countdownText;
 	public Text gameTimeText;
+    public AudioSource countDownAudio;
+    public AudioSource backgroundAudio;
 
 	private int gameTime = 0;
 	private int countdownTime = 3;
@@ -18,17 +20,25 @@ public class BattleCountdown : MonoBehaviour {
 		countdownStr = countdownTime.ToString();
 		StartCoroutine("GTime");
 		Time.timeScale = 1;
+        backgroundAudio.loop = true;
 	}
 
 	// Update is called once per frame
 	void Update() {
 		//countdownText.text = countdownStr.ToString();
 		gameTimeText.text = "Time:" + gameTime.ToString();
+        if (isGameReady && !backgroundAudio.isPlaying)
+        {
+            backgroundAudio.Play();
+        }
 	}
 
 	IEnumerator GTime() {
 		StartCoroutine("Countdown");
-		yield return new WaitForSeconds(4);
+        countDownAudio.Play();
+		yield return new WaitForSeconds(3);
+        countDownAudio.Stop();
+        yield return new WaitForSeconds(1);
 		StopCoroutine("Countdown");
 		StartCoroutine("GameTime");
 		countdownText.text = "";
@@ -36,22 +46,28 @@ public class BattleCountdown : MonoBehaviour {
 	}
 
 	IEnumerator Countdown() {
-		while (true) {
-			yield return new WaitForSeconds(1);
-			--countdownTime;
-			if (countdownTime < 1) {
-				countdownText.text = " Fight!";
-				countdownText.fontSize = 96;
-				countdownText.color = new Color32(0xC6, 0x28, 0x28, 0xFF);
-			} else
-				countdownText.text = countdownTime.ToString();
-		}
+        while (true)
+        {
+            yield return new WaitForSeconds(1);
+            --countdownTime;
+            if (countdownTime < 1)
+            {
+                countdownText.text = " Fight!";
+                countdownText.fontSize = 96;
+                countdownText.color = new Color32(0xC6, 0x28, 0x28, 0xFF);
+            }
+            else
+            {
+                countdownText.text = countdownTime.ToString();
+            }
+        }
 	}
 
 	IEnumerator GameTime() {
 		while (true) {
-			yield return new WaitForFixedUpdate();
-			++gameTime;
+            //yield return new WaitForFixedUpdate();
+            ++gameTime;
+            yield return new WaitForSeconds(1);
 		}
 	}
 

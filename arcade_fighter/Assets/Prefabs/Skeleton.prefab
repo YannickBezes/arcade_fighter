@@ -209,8 +209,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   faceRight: 1
-  projectile: {fileID: 5607297278488647678, guid: 978146e93380572429d330ae172d1fff,
+  projectile: {fileID: 44207820946568793, guid: bf7f1159824318d44992cb516d4377f7,
     type: 3}
+  comboImg: {fileID: 0}
   combos:
     listCombos:
     - listKeyCode: 000000000300000000000000

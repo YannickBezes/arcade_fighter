@@ -129,7 +129,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &3031433059271474101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,6 +147,7 @@ MonoBehaviour:
   rangeModifier: 1
   speedModifier: 0
   duration: 3
+  audioSourceName: item1
 --- !u!58 &7724463394003618440
 CircleCollider2D:
   m_ObjectHideFlags: 0

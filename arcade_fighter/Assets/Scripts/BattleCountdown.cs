@@ -6,7 +6,6 @@ public class BattleCountdown : MonoBehaviour {
 	public Text countdownText;
 	public Text gameTimeText;
     public AudioSource countDownAudio;
-    public AudioSource backgroundAudio;
 
 	private int gameTime = 0;
 	private int countdownTime = 3;
@@ -20,17 +19,12 @@ public class BattleCountdown : MonoBehaviour {
 		countdownStr = countdownTime.ToString();
 		StartCoroutine("GTime");
 		Time.timeScale = 1;
-        backgroundAudio.loop = true;
 	}
 
 	// Update is called once per frame
 	void Update() {
 		//countdownText.text = countdownStr.ToString();
 		gameTimeText.text = "Time:" + gameTime.ToString();
-        if (isGameReady && !backgroundAudio.isPlaying)
-        {
-            backgroundAudio.Play();
-        }
 	}
 
 	IEnumerator GTime() {

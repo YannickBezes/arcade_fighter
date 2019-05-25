@@ -50,6 +50,8 @@ public class Player : MonoBehaviour {
 	public float timeBetweenAttacks = 0.3f;
 	private float nextAttack = 0;
 
+    public AudioSource projectileAudio;
+
 	// For query of PlayerHealth
 	public bool isDamaged = false;
 
@@ -239,6 +241,7 @@ public class Player : MonoBehaviour {
 			}
 			p.GetComponent<ProjectileScript>().damage = attack * 0.5f; // Set the damage of the projectile
 			animator.SetTrigger("RangedAttack");
+            projectileAudio.Play();
 		}
 	}
 

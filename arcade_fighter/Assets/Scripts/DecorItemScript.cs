@@ -32,6 +32,7 @@ public class DecorItemScript : MonoBehaviour {
 		if (hitbox.Distance(player2.GetComponent<BoxCollider2D>()).distance < explosionRadius) {
 			player2.GetComponent<Player>().TakeDamage(explosionDamage);
 		}
+        GameObject.Find("WoodExplosion").GetComponent<AudioSource>().Play();
 		Destroy(gameObject);
 	}
 }
